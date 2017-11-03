@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+	<link rel="stylesheet" type="text/css" href="/donating-book/client/lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/donating-book/client/lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="/donating-book/client/css/style.css"/>
+	
+	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
+	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
+	
+	<title>Cadastro Organização</title>
+</h:head>
+<h:body class="login">
+	<div class="container">
+		<div class="card">
+			<ul class="nav nav-tabs nav-justified">
+				<li>
+                    <a>Nova Organização</a>
+                </li>
+			</ul>
+			<div class="tab-content">
+				<div id="ong" class="tab-pane fade in active">
+					<div class="row">
+						<h:form>
+							<p class="text-center">Dados para acesso</p>
+							<div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="">E-mail</label>
+                                    <h:inputText value="#{organizacaoController.email}" type="email" class="form-control" id="email" ></h:inputText>
+                                </div>
+                            </div>
+							<div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="">Senha</label>
+                                    <h:inputText type="password" value="#{organizacaoController.senha}" class="form-control" placeholder="Senha"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="">Confirme a senha</label>
+                                    <h:inputText type="password" value="#{organizacaoController.senha2}" class="form-control" placeholder="Senha"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <hr/>
+                            </div>
+                            <p class="text-center">Dados da ONG</p>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="">Nome</label>
+                                    <h:inputText type="text" value="#{organizacaoController.nome}" class="form-control" placeholder="Nome"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="">CPF</label>
+                                    <h:inputText type="text" value="#{organizacaoController.cpf}" class="form-control" placeholder="CPF"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="">Telefone</label>
+                                    <h:inputText type="text" value="#{organizacaoController.telefone}" class="form-control" placeholder="Telefone"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="form-group">
+                                    <label for="">Endereço</label>
+                                    <h:inputText type="text" value="#{organizacaoController.rua}" class="form-control" placeholder="Endereço"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="form-group">
+                                    <label for="">Número</label>
+                                    <h:inputText type="number" value="#{organizacaoController.numero}" class="form-control" placeholder="Nº"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="">Complemento</label>
+                                    <h:inputText type="text" value="#{organizacaoController.complemento}" class="form-control" placeholder="Complemento"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="">Bairro</label>
+                                    <h:inputText type="text" value="#{organizacaoController.bairro}" class="form-control" placeholder="Bairro"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="">Estado</label>
+                                    <select class="form-control">
+                                        <option>PR</option>
+                                        <option>SP</option>
+                                        <option>RJ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="">Cidade</label>
+                                    <h:inputText type="text" value="#{organizacaoController.cidade}" class="form-control" placeholder="Cidade"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <h:commandLink href="login.xhtml" action="#{organizacaoController.cadastra}" class="btn btn-primary btn-block">Cadastrar</h:commandLink>
+                            </div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

@@ -20,9 +20,11 @@
 		<div class="card card-container login">
 			<h:form>
 				<div class="form-group">
+					<p>E-mail</p>
 					<h:inputText id="emailVoluntario" value="#{controllerLogin.email}" class="form-control input-sm chat-input"></h:inputText>
 				</div>
 				<div class="form-group">
+					<p>Senha</p>
                     <h:inputText id="senhaVoluntario" value="#{controllerLogin.senha}" class="form-control input-sm chat-input"></h:inputText>
                 </div>
                 <h:commandLink action="#{controllerLogin.logar}" class="btn btn-primary btn-block" value="Logar"></h:commandLink>
@@ -33,7 +35,9 @@
             </a>
             <hr />
             <p class="text-center">Ainda não possui conta?</p>
-            <a href="cadastro.xhtml" class="btn btn-primary btn-block">Cadastre-se</a>
+            <a href="cadastro_voluntario.xhtml" class="btn btn-primary btn-block">Cadastre-se como Voluntário</a>
+            <a href="cadastro_organizacao.xhtml" class="btn btn-primary btn-block">Cadastre-se como Organização</a>
+            <a href="cadastro_membro_ong.xhtml" class="btn btn-primary btn-block">Cadastre-se como Membro de uma ONG</a>
 		</div>
 	</div>
 </h:body>	

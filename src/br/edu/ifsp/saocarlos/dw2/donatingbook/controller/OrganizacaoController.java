@@ -115,11 +115,13 @@ public class OrganizacaoController extends Controller {
 			organizacao.setBairro(bairro);
 			organizacao.setEstado("SP");
 			organizacao.setCidade(cidade);
-			organizacao.setTipo("Voluntario");
+			organizacao.setTipo("Organizacao");
+			organizacao.setStatus(0);
 			organizacaoRepository.inserir(organizacao);
-			return "/login.xhtml";
+			
+			return "/login";
 		}else {
-			return "/cadastro.xhtml";
+			return "/cadastro";
 		}
 	}
 }

@@ -2,18 +2,16 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="donating-book" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Usuario</class>
-		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Administrador</class>
-		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Destinatario</class>
-		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao</class>
 		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario</class>
+		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Usuario</class>
+		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao</class>
 		<properties>
-				<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-				<property name="hibernate.hbm2ddl.auto" value="update"/>
-				<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
-				<property name="javax.persistence.jdbc.user" value="sa"/>
-				<property name="javax.persistence.jdbc.password" value=""/>
-				<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost:9001/doacao"/>
-			</properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
+			<property name="javax.persistence.jdbc.user" value="sa"/>
+			<property name="javax.persistence.jdbc.password" value=""/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost/doacao"/>
+		</properties>
 	</persistence-unit>
 </persistence>
