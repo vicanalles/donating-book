@@ -6,11 +6,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 
-import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
-import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Membro;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.MembroRepository;
 
 @ManagedBean
-public class OrganizacaoController extends Controller {
+public class MembroController extends Controller {
 
 	private String email;
 	private String senha;
@@ -98,31 +98,30 @@ public class OrganizacaoController extends Controller {
 		this.cidade = cidade;
 	}
 	
-	public String cadastra() throws NoSuchAlgorithmException {
+	public String cadastra() throws NoSuchAlgorithmException{
+		
 		FacesContext fc = FacesContext.getCurrentInstance();
-		EntityManager manager = getEntityManager();	
+		EntityManager manager = getEntityManager();
 		if(senha.equals(senha2)) {
-			OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
-			Organizacao organizacao = new Organizacao();
-			organizacao.setEmail(email);
-			organizacao.setSenha(senha);
-			organizacao.setNome(nome);
-			organizacao.setCpf(cpf);
-			organizacao.setTelefone(telefone);
-			organizacao.setRua(rua);
-			organizacao.setNumero(numero);
-			organizacao.setComplemento(complemento);
-			organizacao.setBairro(bairro);
-			organizacao.setEstado("SP");
-			organizacao.setCidade(cidade);
-			organizacao.setTipo("Organizacao");
-			organizacao.setStatus(0);
-			organizacao.setCodigo("minhaorganizacao");
-			organizacaoRepository.inserir(organizacao);
+			MembroRepository membroRepository = new MembroRepository(manager);
+			Membro membro = new Membro();
+			membro.setEmail(email);
+			membro.setSenha(senha);
+			membro.setNome(nome);
+			membro.setCpf(cpf);
+			membro.setTelefone(telefone);
+			membro.setRua(rua);
+			membro.setNumero(numero);
+			membro.setComplemento(complemento);
+			membro.setBairro(bairro);
+			membro.setEstado("SP");
+			membro.setCidade(cidade);
+			membro.setTipo("membro");
+			membroRepository.inserir(membro);
 			
 			return "/login.xhtml";
 		}else {
-			return "/cadastro_organizacao.xhtml";
+			return "/cadastro_membro_ong.xhtml";
 		}
 	}
 }

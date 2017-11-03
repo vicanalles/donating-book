@@ -5,8 +5,6 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
-import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.UsuarioRepository;
-
 public abstract class Controller {
 	
 	protected EntityManager getEntityManager() {

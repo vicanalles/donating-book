@@ -5,10 +5,10 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ong")
-@PrimaryKeyJoinColumn(name="id")
-public class Organizacao extends Usuario{
-
+@Table(name = "membro")
+@PrimaryKeyJoinColumn(name = "id")
+public class Membro extends Usuario{
+	
 	private String nome;
 	private String cpf;
 	private String telefone;
@@ -18,21 +18,7 @@ public class Organizacao extends Usuario{
 	private String bairro;
 	private String estado;
 	private String cidade;
-	private int status;
-	private String codigo;
 	
-	public String getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-	public int getStatus() {
-		return status;
-	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
 	public String getNome() {
 		return nome;
 	}

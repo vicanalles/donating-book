@@ -119,7 +119,7 @@ public class VoluntarioController extends Controller {
 			voluntarioRepository.inserir(voluntario);
 			return "/login.xhtml";
 		}else {
-			return "/cadastro.xhtml";
+			return "/cadastro_voluntario.xhtml";
 		}
 	}
 }

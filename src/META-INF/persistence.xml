@@ -5,6 +5,8 @@
 		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario</class>
 		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Usuario</class>
 		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao</class>
+		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Membro</class>
+		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Administrador</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

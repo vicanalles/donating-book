@@ -31,7 +31,7 @@
 							<div class="col-xs-12">
                                 <div class="form-group">
                                     <label for="">Código da ONG</label>
-                                    <input type="text" class="form-control" placeholder="Código"/>
+                                    <h:inputText type="text" class="form-control" placeholder="Código"/>
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -41,19 +41,19 @@
                             <div class="col-xs-4">
                                 <div class="form-group">
                                     <label for="">E-mail</label>
-                                    <input type="email" class="form-control" placeholder="E-mail"/>
+                                    <h:inputText value="#{membroController.email}" type="email" class="form-control" placeholder="E-mail"/>
                                 </div>
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
                                     <label for="">Senha</label>
-                                    <input type="password" class="form-control" placeholder="Senha"/>
+                                    <h:inputText value="#{membroController.senha}" type="password" class="form-control" placeholder="Senha"/>
                                 </div>
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
                                     <label for="">Confirme a senha</label>
-                                    <input type="password" class="form-control" placeholder="Senha"/>
+                                    <h:inputText value="#{membroController.senha2}" type="password" class="form-control" placeholder="Confirmar Senha"/>
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -63,43 +63,43 @@
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <label for="">Nome</label>
-                                    <input type="text" class="form-control" placeholder="Nome"/>
+                                    <h:inputText value="#{membroController.nome}" type="text" class="form-control" placeholder="Nome"/>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="">CNPJ</label>
-                                    <input type="text" class="form-control" placeholder="CNPJ"/>
+                                    <label for="">CPF</label>
+                                    <h:inputText value="#{membroController.cpf}" type="text" class="form-control" placeholder="CNPJ"/>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="">Telefone</label>
-                                    <input type="text" class="form-control" placeholder="Telefone"/>
+                                    <h:inputText value="#{membroController.telefone}" type="text" class="form-control" placeholder="Telefone"/>
                                 </div>
                             </div>
                             <div class="col-xs-10">
                                 <div class="form-group">
                                     <label for="">Endereço</label>
-                                    <input type="text" class="form-control" placeholder="Endereço"/>
+                                    <h:inputText value="#{membroController.rua}" type="text" class="form-control" placeholder="Endereço"/>
                                 </div>
                             </div>
                             <div class="col-xs-2">
                                 <div class="form-group">
                                     <label for="">Número</label>
-                                    <input type="number" class="form-control" placeholder="Nº"/>
+                                    <h:inputText value="#{membroController.numero}" type="number" class="form-control" placeholder="Nº"/>
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="">Complemento</label>
-                                    <input type="text" class="form-control" placeholder="Complemento"/>
+                                    <h:inputText value="#{membroController.complemento}" type="text" class="form-control" placeholder="Complemento"/>
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="">Bairro</label>
-                                    <input type="text" class="form-control" placeholder="Bairro"/>
+                                    <h:inputText value="#{membroController.bairro}" type="text" class="form-control" placeholder="Bairro"/>
                                 </div>
                             </div>
                             <div class="col-xs-3">
@@ -115,11 +115,11 @@
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="">Cidade</label>
-                                    <input type="text" class="form-control" placeholder="Cidade"/>
+                                    <h:inputText value="#{membroController.cidade}" type="text" class="form-control" placeholder="Cidade"/>
                                 </div>
                             </div>
                             <div class="col-xs-12">
-                                <a href="index.html" class="btn btn-primary btn-block">Cadastrar Novo Membro</a>
+                                <h:commandLink action="#{membroController.cadastra}" class="btn btn-primary btn-block">Cadastrar Novo Membro</h:commandLink>
                             </div>
 						</h:form>
 					</div>
