@@ -3,11 +3,12 @@ package br.edu.ifsp.saocarlos.dw2.donatingbook.controller;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.UsuarioRepository;
 
-public abstract class Controller {
+public abstract class Controller extends HttpServlet{
 	
 	protected EntityManager getEntityManager() {
 		FacesContext fc = FacesContext.getCurrentInstance();
