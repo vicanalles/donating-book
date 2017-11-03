@@ -119,8 +119,8 @@ public class OrganizacaoController extends Controller {
 			organizacao.setStatus(0);
 			organizacao.setCodigo("minhaorganizacao");
 			organizacaoRepository.inserir(organizacao);
-			
-			return "/login.xhtml";
+		
+			return "/index.html";
 		}else {
 			return "/cadastro_organizacao.xhtml";
 		}

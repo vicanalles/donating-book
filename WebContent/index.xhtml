@@ -21,13 +21,13 @@
 			<h:form>
 				<div class="form-group">
 					<p>E-mail</p>
-					<h:inputText id="emailVoluntario" value="#{controllerLogin.email}" class="form-control input-sm chat-input"></h:inputText>
+					<h:inputText id="emailVoluntario" value="#{loginController.email}" class="form-control input-sm chat-input"></h:inputText>
 				</div>
 				<div class="form-group">
 					<p>Senha</p>
-                    <h:inputText id="senhaVoluntario" value="#{controllerLogin.senha}" class="form-control input-sm chat-input"></h:inputText>
+                    <h:inputText id="senhaVoluntario" value="#{loginController.senha}" class="form-control input-sm chat-input"></h:inputText>
                 </div>
-                <h:commandLink action="#{controllerLogin.logar}" class="btn btn-primary btn-block" value="Logar"></h:commandLink>
+                <h:commandLink action="#{loginController.logar}" class="btn btn-primary btn-block" value="Logar"></h:commandLink>
 			</h:form>
 			<br />
 			<a href="#">
