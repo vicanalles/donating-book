@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+	<link rel="stylesheet" type="text/css" href="/donating-book/client/lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/donating-book/client/lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="/donating-book/client/css/style.css"/>
+	
+	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
+	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
+	
+	<title>Editar Dados Doador</title>
+</h:head>
+<h:body>
+	<nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">Doação de Livros</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/donating-book/client/doador/home_doador.xhtml">Home</a>
+                    </li>
+                    <li>
+                        <a href="/donating-book/client/doador/lista_organizacoes.xhtml">Organizações</a>
+                    </li>
+                    <li>
+                        <a href="/donating-book/client/doador/lista_anuncios.xhtml">Anúncios</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuário
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/donating-book/client/doador/editar_dados_doador.xhtml">Editar</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="../../index.xhtml">Sair</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	<div class="container">
+		<div class="card">
+			<ul class="nav nav-tabs nav-justified">
+				<li>
+                    <a>Editar dados do Doador</a>
+                </li>
+			</ul>
+			<div class="tab-content">
+				<div id="doador" class="tab-pane fade in active">
+					<div class="row">
+						<h:form>
+							<p class="text-center"><b>Dados para acesso</b></p>
+							<div class="col-xs-4">
+                                <div class="form-group">
+                                    <p><b>E-mail</b></p>
+                                    <h:inputText type="email" class="form-control" id="email" ></h:inputText>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <p><b>Senha</b></p>
+                                    <h:inputText type="password" class="form-control" placeholder="Senha"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <p><b>Confirmar a Senha</b></p>
+                                    <h:inputText type="password" class="form-control" placeholder="Senha"></h:inputText>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <hr/>
+                            </div>
+                            <p class="text-center"><b>Dados pessoais</b></p>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for=""><b>Nome</b></label>
+                                    <h:inputText type="text" class="form-control" placeholder="Nome"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for=""><b>CPF</b></label>
+                                    <h:inputText type="text" class="form-control" placeholder="CPF"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for=""><b>Telefone</b></label>
+                                    <h:inputText type="text" class="form-control" placeholder="Telefone"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-10">
+                                <div class="form-group">
+                                    <label for=""><b>Endereço</b></label>
+                                    <h:inputText type="text" class="form-control" placeholder="Endereço"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="form-group">
+                                    <label for=""><b>Número</b></label>
+                                    <h:inputText type="number" class="form-control" placeholder="Nº"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for=""><b>Complemento</b></label>
+                                    <h:inputText type="text" class="form-control" placeholder="Complemento"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for=""><b>Bairro</b></label>
+                                    <h:inputText type="text" class="form-control" placeholder="Bairro"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for=""><b>Estado</b></label>
+                                    <select class="form-control">
+                                        <option>PR</option>
+                                        <option>SP</option>
+                                        <option>RJ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for=""><b>Cidade</b></label>
+                                    <h:inputText type="text" class="form-control" placeholder="Cidade"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <h:commandLink class="btn btn-primary btn-block">Atualizar dados do Doador</h:commandLink>
+                            </div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+</h:body>
+</html>

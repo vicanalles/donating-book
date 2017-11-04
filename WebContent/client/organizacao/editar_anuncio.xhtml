@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+	<link rel="stylesheet" type="text/css" href="/donating-book/client/lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/donating-book/client/lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="/donating-book/client/css/style.css"/>
+	
+	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
+	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
+	
+	<title>Editar Anúncio</title>
+</h:head>
+<h:body>
+	<nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">Doação de Livros</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/donating-book/client/organizacao/home_ong.xhtml">Home</a>
+                    </li>
+                    <li>
+                        <a href="/donating-book/client/organizacao/meus_livros.xhtml">Meus livros</a>
+                    </li>
+                    <li class="active">
+                        <a href="/donating-book/client/organizacao/meus_anuncios.xhtml">Meus anúncios</a>
+                    </li>
+                    <li>
+                        <a href="/donating-book/client/organizacao/participantes.xhtml">Participantes</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lorem Ipsum
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/donating-book/client/organizacao/editar_perfil_organizacao.xhtml">Editar Perfil</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="../../index.xhtml">Sair</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="page-header">
+            <h1>Editar Anúncio
+                <small>
+                    <a href="anuncios.xhtml" class="btn btn-success">Salvar</a>
+                </small>
+            </h1>
+        </div>
+        <div class="form-group">
+            <label for="">Título do livro</label>
+            <input type="text" class="form-control" placeholder="Título do livro"/>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label for="">Imagem</label>
+                    <input type="text" class="form-control" placeholder="url da imagem"/>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="">Quantidade</label>
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+                <label for="">Descrição</label>
+                <textarea class="form-control" rows="5"></textarea>                
+            </div>
+    </div>
+</h:body>
+</html>

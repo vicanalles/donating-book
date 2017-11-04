@@ -43,27 +43,30 @@ public class LoginController extends Controller {
 			ExternalContext externalContext = context.getExternalContext();
 			HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 			session.setAttribute("usuario", email);
-			// chamar a HOME do voluntario
 			System.out.println("HOME DO VOLUNTARIO");
-			return "home.xhtml";
+			return "/client/doador/home_doador.xhtml";
 		}
 		else if(loginResult.equals("Organizacao")) {
 			ExternalContext externalContext = context.getExternalContext();
 			HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 			session.setAttribute("usuario", email);
-			// chamar a HOME da organizacao
 			System.out.println("HOME DA ORGANIZACAO");
-			return "home.xhtml";
+			return "/client/organizacao/home_ong.xhtml";
 		}
 		else if(loginResult.equals("membro")) {
 			ExternalContext externalContext = context.getExternalContext();
 			HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 			session.setAttribute("usuario", email);
-			// chamar a HOME do membro
 			System.out.println("HOME DO MEMBRO");
-			return "home.xhtml";
+			return "/client/membro/home_membro.xhtml";
 		}
-		else {
+		else if(loginResult.equals("Administrador")) {
+			ExternalContext externalContext = context.getExternalContext();
+			HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+			session.setAttribute("usuario", email);
+			System.out.println("HOME DO ADMINISTRADOR");
+			return "/client/admin/home_admin";
+		} else {
 			FacesMessage message = new FacesMessage("Senha ou usuário incorreto!");
 			message.setSeverity(FacesMessage.SEVERITY_INFO);
 			

@@ -10,12 +10,58 @@
 	
 	<link rel="stylesheet" type="text/css" href="/donating-book/client/css/style.css"/>
 	
-	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
 	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
+	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
 	
 	<title>Cadastrar Administrador</title>
 </h:head>
-<h:body class="login">
+<h:body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">Doação de Livros</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+                    <li>
+                        <a href="home_admin.xhtml">Home</a>
+                    </li>
+                    <li>
+                        <a href="organizacoes.xhtml">Organizações</a>
+                    </li>
+                    <li>
+                        <a href="doadores.xhtml">Doadores</a>
+                    </li>
+                    <li class="active">
+                        <a href="cadastro_administrador.xhtml">Novo Administrador</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/donating-book/client/admin/editar_perfil_admin.xhtml">Editar</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="../../index.xhtml">Sair</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+			</div>
+		</div>
+	</nav>
 	<div class="container">
 		<div class="card">
 			<ul class="nav nav-tabs nav-justified">
@@ -46,7 +92,7 @@
                                     <h:inputText value="#{administradorController.senha2}" type="password" class="form-control" placeholder="Senha"/>
                                 </div>
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-xs-12">
                             	<div class="form-group">
                             		<label for="">Nome do Administrador</label>
                             		<h:inputText value="#{administradorController.nome}" type="text" class="form-control" placeholder="Nome"/>
