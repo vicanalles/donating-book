@@ -11,7 +11,16 @@
 	<link rel="stylesheet" type="text/css" href="/donating-book/client/css/style.css"/>
 	
 	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
+	<script src="/donating-book/client/lib/jquery.mask.js"/>
 	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
+	<script type="text/javascript">
+
+    $(document).ready(function(){
+		  $(".telefone").mask("(00) 0000-00000");
+		  $(".cpf").mask("000.000.000-00");
+		});
+
+</script>
 	
 	<title>Cadastrar Novo Membro da ONG</title>
 </h:head>
@@ -28,81 +37,81 @@
 					<div class="row">
 						<h:form>
 							<p class="text-center">Insira o código fornecido pela sua ONG</p>
-							<div class="col-xs-12">
+							<div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="">Código da ONG</label>
                                     <h:inputText type="text" class="form-control" placeholder="Código"/>
                                 </div>
                             </div>
-                            <div class="col-xs-12">
+                            <div class="col-sm-12">
                                 <hr/>
                             </div>
                             <p class="text-center">Dados para acesso</p>
-                            <div class="col-xs-4">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="">E-mail</label>
                                     <h:inputText value="#{membroController.email}" type="email" class="form-control" placeholder="E-mail"/>
                                 </div>
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="">Senha</label>
-                                    <h:inputText value="#{membroController.senha}" type="password" class="form-control" placeholder="Senha"/>
+                                    <h:inputSecret value="#{membroController.senha}" class="form-control" placeholder="Senha"></h:inputSecret>
                                 </div>
                             </div>
-                            <div class="col-xs-4">
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="">Confirme a senha</label>
-                                    <h:inputText value="#{membroController.senha2}" type="password" class="form-control" placeholder="Confirmar Senha"/>
+                                    <h:inputSecret value="#{membroController.senha2}" class="form-control" placeholder="Confirmar Senha"></h:inputSecret>
                                 </div>
                             </div>
-                            <div class="col-xs-12">
+                            <div class="col-sm-12">
                                 <hr/>
                             </div>
                             <p class="text-center">Dados pessoais</p>
-                            <div class="col-xs-12">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="">Nome</label>
                                     <h:inputText value="#{membroController.nome}" type="text" class="form-control" placeholder="Nome"/>
                                 </div>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="">CPF</label>
-                                    <h:inputText value="#{membroController.cpf}" type="text" class="form-control" placeholder="CNPJ"/>
+                                    <h:inputText value="#{membroController.cpf}" type="text" class="form-control cpf" placeholder="CPF" />
                                 </div>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="">Telefone</label>
-                                    <h:inputText value="#{membroController.telefone}" type="text" class="form-control" placeholder="Telefone"/>
+                                    <h:inputText value="#{membroController.telefone}" type="text" class="form-control telefone" placeholder="Telefone"/>
                                 </div>
                             </div>
-                            <div class="col-xs-10">
+                            <div class="col-sm-10">
                                 <div class="form-group">
                                     <label for="">Endereço</label>
                                     <h:inputText value="#{membroController.rua}" type="text" class="form-control" placeholder="Endereço"/>
                                 </div>
                             </div>
-                            <div class="col-xs-2">
+                            <div class="col-sm-2">
                                 <div class="form-group">
                                     <label for="">Número</label>
                                     <h:inputText value="#{membroController.numero}" type="number" class="form-control" placeholder="Nº"/>
                                 </div>
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="">Complemento</label>
                                     <h:inputText value="#{membroController.complemento}" type="text" class="form-control" placeholder="Complemento"/>
                                 </div>
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="">Bairro</label>
                                     <h:inputText value="#{membroController.bairro}" type="text" class="form-control" placeholder="Bairro"/>
                                 </div>
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="">Estado</label>
                                     <select class="form-control">
@@ -112,13 +121,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="">Cidade</label>
                                     <h:inputText value="#{membroController.cidade}" type="text" class="form-control" placeholder="Cidade"/>
                                 </div>
                             </div>
-                            <div class="col-xs-12">
+                            <div class="col-sm-12">
                                 <h:commandLink action="#{membroController.cadastra}" class="btn btn-primary btn-block">Cadastrar Novo Membro</h:commandLink>
                             </div>
 						</h:form>
