@@ -21,11 +21,11 @@
 			<h:form>
 				<div class="form-group">
 					<p>E-mail</p>
-					<h:inputText id="emailVoluntario" value="#{loginController.email}" class="form-control input-sm chat-input"></h:inputText>
+					<h:inputText id="emailVoluntario" type="email" value="#{loginController.email}" class="form-control input-sm chat-input"></h:inputText>
 				</div>
 				<div class="form-group">
 					<p>Senha</p>
-                    <h:inputText id="senhaVoluntario" value="#{loginController.senha}" class="form-control input-sm chat-input"></h:inputText>
+                    <h:inputSecret id="senhaVoluntario" value="#{loginController.senha}" class="form-control input-sm chat-input"></h:inputSecret>
                 </div>
                 <h:commandLink action="#{loginController.logar}" class="btn btn-primary btn-block" value="Logar"></h:commandLink>
 			</h:form>
@@ -35,10 +35,9 @@
             </a>
             <hr />
             <p class="text-center">Ainda não possui conta?</p>
-            <a href="cadastro_voluntario.xhtml" class="btn btn-primary btn-block">Cadastre-se como Voluntário</a>
-            <a href="cadastro_organizacao.xhtml" class="btn btn-primary btn-block">Cadastre-se como Organização</a>
-            <a href="cadastro_membro_ong.xhtml" class="btn btn-primary btn-block">Cadastre-se como Membro de uma ONG</a>
-            <a href="cadastro_administrador.xhtml" class="btn btn-primary btn-block">Cadastrar Administrador</a>
+            <a href="/donating-book/client/doador/cadastro_voluntario.xhtml" class="btn btn-primary btn-block">Cadastre-se como Voluntário</a>
+            <a href="/donating-book/client/organizacao/cadastro_organizacao.xhtml" class="btn btn-primary btn-block">Cadastre-se como Organização</a>
+            <a href="/donating-book/client/membro/cadastro_membro_ong.xhtml" class="btn btn-primary btn-block">Cadastre-se como Membro de uma ONG</a>
 		</div>
 	</div>
 </h:body>	
