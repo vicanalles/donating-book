@@ -10,15 +10,16 @@
 	
 	<link rel="stylesheet" type="text/css" href="/donating-book/client/css/style.css"/>
 	
-	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
 	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
+	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>	
 
 	<title>Login</title>
 </h:head>
 <h:body class="login">
 	<div class="container">
 		<div class="card card-container login">
-			<h:form>
+			<h:form id="form">
+				<h:messages id="email" for="email" class="alert alert-danger"/>
 				<div class="form-group">
 					<p>E-mail</p>
 					<h:inputText id="emailVoluntario" value="#{loginController.email}" class="form-control input-sm chat-input"></h:inputText>
@@ -35,10 +36,9 @@
             </a>
             <hr />
             <p class="text-center">Ainda não possui conta?</p>
-            <a href="cadastro_voluntario.xhtml" class="btn btn-primary btn-block">Cadastre-se como Voluntário</a>
-            <a href="cadastro_organizacao.xhtml" class="btn btn-primary btn-block">Cadastre-se como Organização</a>
-            <a href="cadastro_membro_ong.xhtml" class="btn btn-primary btn-block">Cadastre-se como Membro de uma ONG</a>
-            <a href="cadastro_administrador.xhtml" class="btn btn-primary btn-block">Cadastrar Administrador</a>
+            <a href="/donating-book/client/doador/cadastro_voluntario.xhtml" class="btn btn-primary btn-block">Cadastre-se como Voluntário</a>
+            <a href="/donating-book/client/organizacao/cadastro_organizacao.xhtml" class="btn btn-primary btn-block">Cadastre-se como Organização</a>
+            <a href="/donating-book/client/membro/cadastro_membro_ong.xhtml" class="btn btn-primary btn-block">Cadastre-se como Membro de uma ONG</a>
 		</div>
 	</div>
 </h:body>	

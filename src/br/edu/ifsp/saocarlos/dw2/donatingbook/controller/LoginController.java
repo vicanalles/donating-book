@@ -39,6 +39,13 @@ public class LoginController extends Controller {
 		
 		UsuarioRepository usuarioRepo = new UsuarioRepository(manager);
 		
+		if(!usuarioRepo.verifyUserExistence(email)) {
+			FacesMessage message = new FacesMessage("Email ou senha inválidos!");
+			message.setSeverity(FacesMessage.SEVERITY_INFO);			
+			context.addMessage("form:email", message);
+			return "index.xhtml";
+		}
+		
 		String loginResult = usuarioRepo.login(email, senha);
 		if(loginResult.equals("Voluntario")) {
 			ExternalContext externalContext = context.getExternalContext();

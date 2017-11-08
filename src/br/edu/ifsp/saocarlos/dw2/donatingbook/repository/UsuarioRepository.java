@@ -18,8 +18,8 @@ public class UsuarioRepository {
 		Query query = manager.createQuery("SELECT email FROM Usuario u WHERE u.email = ?1");
 		query.setParameter(1, email);
 		try {
-			Usuario usuario = null;
-			usuario = (Usuario)query.getSingleResult();
+			Object object;
+			object = query.getSingleResult();
 			
 			return true;
 		} catch (NoResultException e) {
