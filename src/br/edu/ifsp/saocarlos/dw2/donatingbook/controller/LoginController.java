@@ -38,6 +38,11 @@ public class LoginController extends Controller {
 		EntityManager manager = getEntityManager();
 		
 		UsuarioRepository usuarioRepo = new UsuarioRepository(manager);
+		
+		if(!usuarioRepo.verifyUserExistence(email)) {
+			return "index.xhtml";
+		}
+		
 		String loginResult = usuarioRepo.login(email, senha);
 		if(loginResult.equals("Voluntario")) {
 			ExternalContext externalContext = context.getExternalContext();
@@ -67,10 +72,6 @@ public class LoginController extends Controller {
 			System.out.println("HOME DO ADMINISTRADOR");
 			return "/client/admin/home_admin";
 		} else {
-			FacesMessage message = new FacesMessage("Senha ou usuário incorreto!");
-			message.setSeverity(FacesMessage.SEVERITY_INFO);
-			
-			context.addMessage("form:senha", message);
 			// exibir o erro
 			return "index.xhtml";
 		}

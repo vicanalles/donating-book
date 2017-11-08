@@ -14,6 +14,19 @@ public class UsuarioRepository {
 		this.manager = manager;
 	}
 	
+	public boolean verifyUserExistence(String email) {
+		Query query = manager.createQuery("SELECT email FROM Usuario u WHERE u.email = ?1");
+		query.setParameter(1, email);
+		try {
+			Usuario usuario = null;
+			usuario = (Usuario)query.getSingleResult();
+			
+			return true;
+		} catch (NoResultException e) {
+			return false;
+		}
+	}
+	
 	public String login(String email, String senha) {
 		Query query = manager.createQuery("SELECT u FROM Usuario u WHERE u.email LIKE ?1 AND u.senha = ?2");
 		query.setParameter(1, email).setParameter(2, senha);
