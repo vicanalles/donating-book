@@ -39,10 +39,6 @@ public class LoginController extends Controller {
 		
 		UsuarioRepository usuarioRepo = new UsuarioRepository(manager);
 		
-		if(!usuarioRepo.verifyUserExistence(email)) {
-			return "index.xhtml";
-		}
-		
 		String loginResult = usuarioRepo.login(email, senha);
 		if(loginResult.equals("Voluntario")) {
 			ExternalContext externalContext = context.getExternalContext();

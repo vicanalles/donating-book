@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.UsuarioRepository;
 
 @ManagedBean
 public class OrganizacaoController extends Controller {
@@ -102,6 +103,10 @@ public class OrganizacaoController extends Controller {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		EntityManager manager = getEntityManager();	
 		if(senha.equals(senha2)) {
+			UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
+			if(!usuarioRepository.verifyUserExistence(email)) {
+				return "/cadastro_organizacao.xhtml";
+			}
 			OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
 			Organizacao organizacao = new Organizacao();
 			organizacao.setEmail(email);
