@@ -120,7 +120,7 @@ public class OrganizacaoController extends Controller {
 			organizacao.setCodigo("minhaorganizacao");
 			organizacaoRepository.inserir(organizacao);
 		
-			return "/index.html";
+			return "/index.xhtml";
 		}else {
 			return "/cadastro_organizacao.xhtml";
 		}

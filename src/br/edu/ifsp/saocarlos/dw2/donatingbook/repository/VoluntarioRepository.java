@@ -1,8 +1,12 @@
 package br.edu.ifsp.saocarlos.dw2.donatingbook.repository;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario;
 
 public class VoluntarioRepository {
@@ -15,5 +19,45 @@ public class VoluntarioRepository {
 	
 	public void inserir(Voluntario voluntario) {
 		manager.persist(voluntario);
+	}
+	
+	public void desativar(Voluntario voluntario) {
+		manager.persist(voluntario);
+	}
+	
+	/*
+	 * Códigos para verificação de status:
+	 * 0 - Voluntário desativado, não pode acessar o sistema
+	 * 1 - Voluntário ativado, acessa o sistema normalmente
+	 */
+
+	public ArrayList<Voluntario> getVoluntarios() {
+		
+		ArrayList<Voluntario> voluntarios = new ArrayList<Voluntario>();
+		Query query = manager.createQuery("SELECT v FROM Voluntario v WHERE status = 1");
+		
+		try {
+			voluntarios = (ArrayList<Voluntario>)query.getResultList();
+			return voluntarios;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return voluntarios;
+		}
+	}
+
+	public int status(int id) {
+		
+		Query query = manager.createQuery("SELECT v FROM Voluntario v WHERE v.id LIKE ?1");
+		query.setParameter(1, id);
+		
+		try {
+			Voluntario voluntario = null;
+			voluntario = (Voluntario)query.getSingleResult();
+			
+			return voluntario.getStatus();
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return 3;
+		}
 	}
 }

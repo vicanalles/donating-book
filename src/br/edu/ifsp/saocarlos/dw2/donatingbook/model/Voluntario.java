@@ -18,7 +18,14 @@ public class Voluntario extends Usuario{
 	private String bairro;
 	private String cidade;
 	private String estado;
+	private int status;
 	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public String getNome() {
 		return nome;
 	}

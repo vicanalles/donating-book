@@ -5,7 +5,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ong")
 @PrimaryKeyJoinColumn(name="id")
 public class Organizacao extends Usuario{
 
