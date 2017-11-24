@@ -71,4 +71,17 @@ public class OrganizacaoRepository {
 			return organizacoes;
 		}
 	}
+
+	public int getOngByEmail(String emailUser) {
+		Organizacao organizacao = null;
+		Query query = manager.createQuery("SELECT o FROM Organizacao o WHERE o.email = ?1");
+		query.setParameter(1, emailUser);
+		try {
+			organizacao = (Organizacao) query.getSingleResult();
+			return organizacao.getId();
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }
