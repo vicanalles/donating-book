@@ -1,6 +1,7 @@
 package br.edu.ifsp.saocarlos.dw2.donatingbook.controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -20,6 +21,7 @@ public class AnuncioController extends Controller{
 	private int quantidade;
 	private String descricao;
 	private int idProprietario;
+	private ArrayList<Anuncio> anuncios;
 	
 	public int getIdProprietario() {
 		return idProprietario;
@@ -61,12 +63,51 @@ public class AnuncioController extends Controller{
 			
 			String emailUser = (String) session.getAttribute("usuario");
 			int idProp = organizacaoRepository.getOngByEmail(emailUser);
-			anuncio.setIdProp(idProp);			
+			anuncio.setIdProp(idProp);
 			anuncioRepository.inserir(anuncio);
 			
 			return "/donating-book/client/organizacao/meus_anuncios.xhtml";
 		}else {
 			return "/donating-book/client/organizacao/novo_anuncio.xhtml";
 		}
+	}
+	
+	public ArrayList<Anuncio> getMeusAnunciosByIdProp() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		String emailUser = (String) session.getAttribute("usuario");
+		int idProp = organizacaoRepository.getOngByEmail(emailUser);
+		
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
+		anuncios = anuncioRepository.getAnunciosByIdProp(idProp);
+		
+		return anuncios;
+	}
+	
+	public String removerAnuncio(Anuncio anuncio) throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		String emailUser = (String) session.getAttribute("usuario");
+		int idProp = organizacaoRepository.getOngByEmail(emailUser);
+		
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
+		anuncioRepository.remover(anuncio);
+		
+		return "/donating-book/client/organizacao/meus_anuncios.xhtml";
+	}
+	
+	public String editarAnuncio(Anuncio anuncio) throws NoSuchAlgorithmException{
+		
+		return "/donating-book/client/organizacao/home_ong";
 	}
 }
