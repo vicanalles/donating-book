@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	
@@ -103,12 +104,36 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="">Estado</label>
-                                    <select class="form-control">
-                                        <option>PR</option>
-                                        <option>SP</option>
-                                        <option>RJ</option>
-                                    </select>
+                                    <h:outputLabel for="">Estado</h:outputLabel>
+                                    <h:selectOneMenu value="#{voluntarioController.estado}" class="form-control">
+                                        <f:selectItem itemValue="AC" itemLabel="AC"></f:selectItem>
+                                        <f:selectItem itemValue="AL" itemLabel="AL"></f:selectItem>
+                                        <f:selectItem itemValue="AP" itemLabel="AP"></f:selectItem>
+                                        <f:selectItem itemValue="AM" itemLabel="AM"></f:selectItem>
+                                        <f:selectItem itemValue="BA" itemLabel="BA"></f:selectItem>
+                                        <f:selectItem itemValue="CE" itemLabel="CE"></f:selectItem>
+                                        <f:selectItem itemValue="DF" itemLabel="DF"></f:selectItem>
+                                        <f:selectItem itemValue="ES" itemLabel="ES"></f:selectItem>
+                                        <f:selectItem itemValue="GO" itemLabel="GO"></f:selectItem>
+                                        <f:selectItem itemValue="MA" itemLabel="MA"></f:selectItem>
+                                        <f:selectItem itemValue="MT" itemLabel="MT"></f:selectItem>
+                                        <f:selectItem itemValue="MS" itemLabel="MS"></f:selectItem>
+                                        <f:selectItem itemValue="MG" itemLabel="MG"></f:selectItem>
+                                        <f:selectItem itemValue="PA" itemLabel="PA"></f:selectItem>
+                                        <f:selectItem itemValue="PB" itemLabel="PB"></f:selectItem>
+                                        <f:selectItem itemValue="PR" itemLabel="PR"></f:selectItem>
+                                        <f:selectItem itemValue="PE" itemLabel="PE"></f:selectItem>
+                                        <f:selectItem itemValue="PI" itemLabel="PI"></f:selectItem>
+                                        <f:selectItem itemValue="RJ" itemLabel="RJ"></f:selectItem>
+                                        <f:selectItem itemValue="RN" itemLabel="RN"></f:selectItem>
+                                        <f:selectItem itemValue="RS" itemLabel="RS"></f:selectItem>
+                                        <f:selectItem itemValue="RO" itemLabel="RO"></f:selectItem>
+                                        <f:selectItem itemValue="RR" itemLabel="RR"></f:selectItem>
+                                        <f:selectItem itemValue="SC" itemLabel="SC"></f:selectItem>
+                                        <f:selectItem itemValue="SP" itemLabel="SP"></f:selectItem>
+                                        <f:selectItem itemValue="SE" itemLabel="SE"></f:selectItem>
+                                        <f:selectItem itemValue="TO" itemLabel="TO"></f:selectItem>
+                                    </h:selectOneMenu>
                                 </div>
                             </div>
                             <div class="col-sm-3">

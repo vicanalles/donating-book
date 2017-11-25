@@ -113,7 +113,7 @@ public class VoluntarioController extends Controller {
 			voluntario.setNumero(numero);
 			voluntario.setComplemento(complemento);
 			voluntario.setBairro(bairro);
-			voluntario.setEstado("SP");
+			voluntario.setEstado(estado);
 			voluntario.setCidade(cidade);
 			voluntario.setTipo("Voluntario");
 			voluntarioRepository.inserir(voluntario);

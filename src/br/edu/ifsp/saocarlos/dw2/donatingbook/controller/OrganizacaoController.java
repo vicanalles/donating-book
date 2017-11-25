@@ -113,7 +113,7 @@ public class OrganizacaoController extends Controller {
 			organizacao.setNumero(numero);
 			organizacao.setComplemento(complemento);
 			organizacao.setBairro(bairro);
-			organizacao.setEstado("SP");
+			organizacao.setEstado(estado);
 			organizacao.setCidade(cidade);
 			organizacao.setTipo("Organizacao");
 			organizacao.setStatus(0);

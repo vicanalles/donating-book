@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	
@@ -70,60 +71,28 @@
             <thead>
                 <th>Livro</th>
                 <th>Quantidade</th>
-                <th>Data de publicação</th>
-                <th>Criado por</th>
                 <th></th>
                 <th></th>
             </thead>
             <tbody>
-                <tr>
-                    <td>Lorem Ipsum</td>
-                    <td>14</td>
-                    <td>15/08/2017</td>
-                    <td>admin1</td>
-                    <td>
-                        <a href="editar_anuncio.xhtml" class="btn btn-primary btn-block">Editar</a>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-danger btn-block">Excluir</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem Ipsum</td>
-                    <td>14</td>
-                    <td>15/08/2017</td>
-                    <td>admin1</td>
-                    <td>
-                        <a href="editar_anuncio.xhtml" class="btn btn-primary btn-block">Editar</a>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-danger btn-block">Excluir</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem Ipsum</td>
-                    <td>14</td>
-                    <td>15/08/2017</td>
-                    <td>admin1</td>
-                    <td>
-                        <a href="editar_anuncio.xhtml" class="btn btn-primary btn-block">Editar</a>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-danger btn-block">Excluir</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem Ipsum</td>
-                    <td>14</td>
-                    <td>15/08/2017</td>
-                    <td>admin1</td>
-                    <td>
-                        <a href="editar_anuncio.xhtml" class="btn btn-primary btn-block">Editar</a>
-                    </td>
-                    <td>
-                        <a href="#" class="btn btn-danger btn-block">Excluir</a>
-                    </td>
-                </tr>
+            	<h:form>
+            		<ui:repeat var="a" value="#{anuncioController.meusAnunciosByIdProp}">
+	                	<tr>
+	                		<td>#{a.titulo}</td>
+	                		<td>#{a.quantidade}</td>
+	                		<td class="action-item action-icon">
+	                    		<h:commandLink action="#{anuncioController.editarAnuncio(a)}">
+	                    			<button class="btn btn-primary btn-block">Editar</button>
+	                    		</h:commandLink>
+	                    	</td>
+	                    	<td class="action-item action-icon">
+	                    		<h:commandLink action="#{anuncioController.removerAnuncio(a)}">
+	                    			<button class="btn btn-danger btn-block">Excluir</button>
+	                    		</h:commandLink>
+	                    	</td>
+	                	</tr>
+               		 </ui:repeat>
+            	</h:form>
             </tbody>
         </table>
     </div>

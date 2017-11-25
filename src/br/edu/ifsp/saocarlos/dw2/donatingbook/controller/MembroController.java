@@ -114,7 +114,7 @@ public class MembroController extends Controller {
 			membro.setNumero(numero);
 			membro.setComplemento(complemento);
 			membro.setBairro(bairro);
-			membro.setEstado("SP");
+			membro.setEstado(estado);
 			membro.setCidade(cidade);
 			membro.setTipo("membro");
 			membroRepository.inserir(membro);

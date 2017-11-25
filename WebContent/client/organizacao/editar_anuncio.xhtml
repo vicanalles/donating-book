@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	
@@ -36,7 +38,7 @@
                     <li>
                         <a href="/donating-book/client/organizacao/meus_livros.xhtml">Meus livros</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/donating-book/client/organizacao/meus_anuncios.xhtml">Meus anúncios</a>
                     </li>
                     <li>
@@ -64,40 +66,45 @@
     </nav>
     <div class="container">
         <div class="page-header">
-            <h1>Editar Anúncio
-                <small>
-                    <a href="anuncios.xhtml" class="btn btn-success">Salvar</a>
-                </small>
-            </h1>
+        	<h:form>
+        		<div>
+        			<h1>Editar anúncio
+       				<h:commandLink class="btn btn-success">Salvar</h:commandLink>
+       				</h1>
+        		</div>
+        		<div class="row">
+        			<div class="col-sm-9">
+		                <div class="form-group">
+		                    <label for="">Título do livro</label>
+		                    <h:inputText type="text" class="form-control" placeholder="Título do livro"/>
+		                </div>
+	           		</div>
+			        <div class="col-sm-3">
+			            <div class="form-group">
+			                <h:outputLabel for="">Quantidade</h:outputLabel>
+			                <h:selectOneMenu class="form-control">
+			                    <f:selectItem itemValue="1" itemLabel="1"></f:selectItem>
+			                    <f:selectItem itemValue="2" itemLabel="2"></f:selectItem>
+			                    <f:selectItem itemValue="3" itemLabel="3"></f:selectItem>
+			                    <f:selectItem itemValue="4" itemLabel="4"></f:selectItem>
+			                    <f:selectItem itemValue="5" itemLabel="5"></f:selectItem>
+			                    <f:selectItem itemValue="6" itemLabel="6"></f:selectItem>
+			                    <f:selectItem itemValue="7" itemLabel="7"></f:selectItem>
+			                    <f:selectItem itemValue="8" itemLabel="8"></f:selectItem>
+			                    <f:selectItem itemValue="9" itemLabel="9"></f:selectItem>
+			                    <f:selectItem itemValue="10" itemLabel="10"></f:selectItem>
+			                </h:selectOneMenu>
+			            </div>
+			        </div>
+			        <div class="col-sm-12">
+			        	<div class="form-group">
+					         <label for="">Descrição</label>
+					         <h:inputTextarea class="form-control" rows="5"></h:inputTextarea>
+			    		</div>
+			        </div>
+        		</div>
+        	</h:form>
         </div>
-        <div class="form-group">
-            <label for="">Título do livro</label>
-            <input type="text" class="form-control" placeholder="Título do livro"/>
-        </div>
-        <div class="row">
-            <div class="col-sm-9">
-                <div class="form-group">
-                    <label for="">Imagem</label>
-                    <input type="text" class="form-control" placeholder="url da imagem"/>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="">Quantidade</label>
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-                <label for="">Descrição</label>
-                <textarea class="form-control" rows="5"></textarea>                
-            </div>
     </div>
 </h:body>
 </html>
