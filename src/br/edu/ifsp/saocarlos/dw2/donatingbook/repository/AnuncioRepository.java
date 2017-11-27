@@ -41,7 +41,7 @@ public class AnuncioRepository {
 	public ArrayList<Anuncio> getAnuncios(){
 		
 		ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
-		Query query = manager.createQuery("SELECT * FROM Anuncio");
+		Query query = manager.createQuery("SELECT a FROM Anuncio a");
 		try {
 			anuncios = ((ArrayList<Anuncio>) query.getResultList());
 			return anuncios;

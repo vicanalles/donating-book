@@ -22,7 +22,14 @@ public class AnuncioController extends Controller{
 	private String descricao;
 	private int idProprietario;
 	private ArrayList<Anuncio> anuncios;
+	private String nomeOng;
 	
+	public String getNomeOng() {
+		return nomeOng;
+	}
+	public void setNomeOng(String nomeOng) {
+		this.nomeOng = nomeOng;
+	}
 	public int getIdProprietario() {
 		return idProprietario;
 	}
@@ -96,12 +103,14 @@ public class AnuncioController extends Controller{
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
-		//OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
-		//String emailUser = (String) session.getAttribute("usuario");
-		//int idProp = organizacaoRepository.getOngByEmail(emailUser);
-		
+
 		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
 		anuncios = anuncioRepository.getAnuncios();
+		OrganizacaoController organizacaoController = new OrganizacaoController();
+		for(Anuncio anuncio : anuncios) {
+			nomeOng = organizacaoController.getOngById(anuncio.getIdProp());
+			anuncio.setNomeOng(nomeOng);
+		}
 		
 		return anuncios;
 	}
@@ -127,4 +136,18 @@ public class AnuncioController extends Controller{
 		
 		return "/donating-book/client/organizacao/home_ong";
 	}
+	
+	public ArrayList<Anuncio> getAnunciosByIdProp(int id) throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
+		anuncios = anuncioRepository.getAnunciosByIdProp(id);
+		
+		return anuncios;
+	}
+	
 }
