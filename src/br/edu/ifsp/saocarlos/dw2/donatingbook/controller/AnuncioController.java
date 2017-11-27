@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Anuncio;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Doacao;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.DoacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 
 @ManagedBean
@@ -151,7 +153,15 @@ public class AnuncioController extends Controller{
 	}
 	
 	public String doar(Anuncio anuncio) {
-		System.out.println(anuncio.toString());
+		Doacao doacao = new Doacao();
+		doacao.setIdAnuncio(anuncio.getId());
+		//TODO substituir o 5 pelo ID do usuario logado -> doacao.setIdUsuario(5);
+		
+		EntityManager manager = getEntityManager();
+		DoacaoRepository doacaoRepository = new DoacaoRepository(manager);
+		doacaoRepository.inserir(doacao);
+		
+		System.out.println(doacao.toString());
 		return "/donating-book/client/doador/home_doador.xhtml";
 	}
 	
