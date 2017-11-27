@@ -89,6 +89,23 @@ public class AnuncioController extends Controller{
 		return anuncios;
 	}
 	
+	public ArrayList<Anuncio> getAnuncios() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+		//OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		//String emailUser = (String) session.getAttribute("usuario");
+		//int idProp = organizacaoRepository.getOngByEmail(emailUser);
+		
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
+		anuncios = anuncioRepository.getAnuncios();
+		
+		return anuncios;
+	}
+	
 	public String removerAnuncio(Anuncio anuncio) throws NoSuchAlgorithmException{
 		
 		EntityManager manager = getEntityManager();

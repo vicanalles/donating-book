@@ -37,4 +37,17 @@ public class AnuncioRepository {
 			return anuncios;
 		}
 	}
+	
+	public ArrayList<Anuncio> getAnuncios(){
+		
+		ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
+		Query query = manager.createQuery("SELECT * FROM Anuncio");
+		try {
+			anuncios = ((ArrayList<Anuncio>) query.getResultList());
+			return anuncios;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return anuncios;
+		}
+	}
 }
