@@ -150,4 +150,9 @@ public class AnuncioController extends Controller{
 		return anuncios;
 	}
 	
+	public String doar(Anuncio anuncio) {
+		System.out.println(anuncio.toString());
+		return "/donating-book/client/doador/home_doador.xhtml";
+	}
+	
 }
