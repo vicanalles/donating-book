@@ -3,6 +3,7 @@ package br.edu.ifsp.saocarlos.dw2.donatingbook.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Anuncio {
@@ -14,6 +15,9 @@ public class Anuncio {
 	private int quantidade;
 	private String descricao;
 	private int idProp;
+	@Transient
+	private String nomeOng;
+	
 	
 	public int getId() {
 		return id;
@@ -41,5 +45,11 @@ public class Anuncio {
 	}
 	public void setIdProp(int idProp) {
 		this.idProp = idProp;
+	}
+	public String getNomeOng() {
+		return nomeOng;
+	}
+	public void setNomeOng(String nomeOng) {
+		this.nomeOng = nomeOng;
 	}
 }

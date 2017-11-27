@@ -1,17 +1,23 @@
 package br.edu.ifsp.saocarlos.dw2.donatingbook.controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Anuncio;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 
 @ManagedBean
 public class OrganizacaoController extends Controller {
 
+	private int id;
 	private String email;
 	private String senha;
 	private String senha2;
@@ -24,7 +30,14 @@ public class OrganizacaoController extends Controller {
 	private String bairro;
 	private String estado;
 	private String cidade;
+	private ArrayList<Organizacao> organizacoes;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -125,4 +138,25 @@ public class OrganizacaoController extends Controller {
 			return "/cadastro_organizacao.xhtml";
 		}
 	}
+	
+	public ArrayList<Organizacao> getOrganizacoesAproved() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		
+		organizacoes = organizacaoRepository.getOrganizacoesAproved();
+		return organizacoes;
+	}
+	
+public String getOngById(int id) throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		
+		String nomeOng = organizacaoRepository.getOngById(id);
+		return nomeOng;
+	}
+	
 }
