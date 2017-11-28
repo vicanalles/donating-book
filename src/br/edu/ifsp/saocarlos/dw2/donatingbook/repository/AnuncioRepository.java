@@ -11,6 +11,7 @@ import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Anuncio;
 public class AnuncioRepository {
 
 	private EntityManager manager;
+	private Anuncio anuncio;
 	
 	public AnuncioRepository(EntityManager manager) {
 		this.manager = manager;
@@ -22,6 +23,9 @@ public class AnuncioRepository {
 	
 	public void remover(Anuncio anuncio) {
 		manager.remove(anuncio);
+	}
+	public void atualizar(Anuncio anuncio) {
+		manager.persist(anuncio);
 	}
 	
 	public ArrayList<Anuncio> getAnunciosByIdProp(int id){
@@ -35,6 +39,19 @@ public class AnuncioRepository {
 		}catch(NoResultException e) {
 			e.printStackTrace();
 			return anuncios;
+		}
+	}
+	
+	public Anuncio getAnuncioById(int id) {
+		
+		Query query = manager.createQuery("SELECT a FROM Anuncio a WHERE a.id = ?1");
+		query.setParameter(1, id);
+		try {
+			anuncio = (Anuncio) query.getSingleResult();
+			return anuncio;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return anuncio;
 		}
 	}
 	

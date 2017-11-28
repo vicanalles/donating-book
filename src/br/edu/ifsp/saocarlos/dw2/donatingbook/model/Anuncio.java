@@ -18,7 +18,9 @@ public class Anuncio {
 	@Transient
 	private String nomeOng;
 	
-	
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getId() {
 		return id;
 	}

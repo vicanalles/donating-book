@@ -18,7 +18,8 @@
 	<title>Editar Anúncio</title>
 </h:head>
 <h:body>
-	<nav class="navbar navbar-default">
+	<h:form>
+		<nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -68,21 +69,20 @@
         <div class="page-header">
         	<h:form>
         		<div>
-        			<h1>Editar anúncio
-       				<h:commandLink class="btn btn-success">Salvar</h:commandLink>
-       				</h1>
+        			<h1>Editar anúncio</h1>
+               		<h:commandButton action="#{anuncioController.atualizarAnuncio}" value="Salvar" class="btn btn-success" />
         		</div>
         		<div class="row">
         			<div class="col-sm-9">
 		                <div class="form-group">
-		                    <label for="">Título do livro</label>
-		                    <h:inputText type="text" class="form-control" placeholder="Título do livro"/>
+		                    <h:outputLabel for="">Título do livro</h:outputLabel>
+		                    <h:inputText value="#{anuncioController.titulo}" type="text" class="form-control" placeholder="Título do livro"/>
 		                </div>
 	           		</div>
 			        <div class="col-sm-3">
 			            <div class="form-group">
 			                <h:outputLabel for="">Quantidade</h:outputLabel>
-			                <h:selectOneMenu class="form-control">
+			                <h:selectOneMenu value="#{anuncioController.quantidade}" class="form-control">
 			                    <f:selectItem itemValue="1" itemLabel="1"></f:selectItem>
 			                    <f:selectItem itemValue="2" itemLabel="2"></f:selectItem>
 			                    <f:selectItem itemValue="3" itemLabel="3"></f:selectItem>
@@ -98,13 +98,14 @@
 			        </div>
 			        <div class="col-sm-12">
 			        	<div class="form-group">
-					         <label for="">Descrição</label>
-					         <h:inputTextarea class="form-control" rows="5"></h:inputTextarea>
+					         <h:outputLabel for="">Descrição</h:outputLabel>
+					         <h:inputTextarea value="#{anuncioController.descricao}" class="form-control" rows="5"></h:inputTextarea>
 			    		</div>
 			        </div>
         		</div>
         	</h:form>
         </div>
     </div>
+	</h:form>
 </h:body>
 </html>

@@ -7,6 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,7 @@ import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Doacao;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.DoacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.VoluntarioRepository;
 
 @ManagedBean
 public class AnuncioController extends Controller{
@@ -75,9 +78,9 @@ public class AnuncioController extends Controller{
 			anuncio.setIdProp(idProp);
 			anuncioRepository.inserir(anuncio);
 			
-			return "/donating-book/client/organizacao/meus_anuncios.xhtml";
+			return "meus_anuncios";
 		}else {
-			return "/donating-book/client/organizacao/novo_anuncio.xhtml";
+			return "novo_anuncio";
 		}
 	}
 	
@@ -120,7 +123,7 @@ public class AnuncioController extends Controller{
 	public String removerAnuncio(Anuncio anuncio) throws NoSuchAlgorithmException{
 		
 		EntityManager manager = getEntityManager();
-		
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);s
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
@@ -128,7 +131,6 @@ public class AnuncioController extends Controller{
 		String emailUser = (String) session.getAttribute("usuario");
 		int idProp = organizacaoRepository.getOngByEmail(emailUser);
 		
-		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
 		anuncioRepository.remover(anuncio);
 		
 		return "/donating-book/client/organizacao/meus_anuncios.xhtml";
@@ -136,7 +138,42 @@ public class AnuncioController extends Controller{
 	
 	public String editarAnuncio(Anuncio anuncio) throws NoSuchAlgorithmException{
 		
-		return "/donating-book/client/organizacao/home_ong";
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.TRUE);
+		session.setAttribute("anuncio", anuncio);
+		System.out.println(anuncio.getId());
+		this.titulo = anuncio.getTitulo();
+		this.quantidade = anuncio.getQuantidade();
+		this.descricao = anuncio.getDescricao();
+		
+		return "/client/organizacao/editar_anuncio.xhtml";
+	}
+	
+	public String atualizarAnuncio() throws NoSuchAlgorithmException{		
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.TRUE);
+		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+		
+		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
+		String emailUser = (String) session.getAttribute("usuario");
+		int idProp = organizacaoRepository.getOngByEmail(emailUser);
+		
+		Anuncio anuncio = (Anuncio) session.getAttribute("anuncio");
+		anuncio.setDescricao(descricao);
+		anuncio.setTitulo(titulo);
+		anuncio.setQuantidade(quantidade);
+		anuncio.setIdProp(idProp);
+		
+		System.out.println(anuncio.getId());
+		
+		anuncioRepository.atualizar(anuncio);
+		
+		return "/client/organizacao/meus_anuncios.xhtml";
 	}
 	
 	public ArrayList<Anuncio> getAnunciosByIdProp(int id) throws NoSuchAlgorithmException{
@@ -155,13 +192,21 @@ public class AnuncioController extends Controller{
 	public String doar(Anuncio anuncio) {
 		Doacao doacao = new Doacao();
 		doacao.setIdAnuncio(anuncio.getId());
-		//TODO substituir o 5 pelo ID do usuario logado -> doacao.setIdUsuario(5);
 		
 		EntityManager manager = getEntityManager();
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
+		String emailUser = (String) session.getAttribute("usuario");
+		int idProp = voluntarioRepository.getVoluntarioByEmail(emailUser);
+		
+		doacao.setIdUsuario(idProp);
+		
 		DoacaoRepository doacaoRepository = new DoacaoRepository(manager);
 		doacaoRepository.inserir(doacao);
 		
-		System.out.println(doacao.toString());
 		return "/donating-book/client/doador/home_doador.xhtml";
 	}
 	

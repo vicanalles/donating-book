@@ -60,4 +60,18 @@ public class VoluntarioRepository {
 			return 3;
 		}
 	}
+
+	public int getVoluntarioByEmail(String emailUser) {
+		
+		Voluntario voluntario = null;
+		Query query = manager.createQuery("SELECT v FROM Voluntario v WHERE v.email = ?1");
+		query.setParameter(1, emailUser);
+		try {
+			voluntario = (Voluntario) query.getSingleResult();
+			return voluntario.getId();
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }
