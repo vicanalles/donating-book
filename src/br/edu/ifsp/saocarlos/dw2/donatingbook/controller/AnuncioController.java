@@ -123,7 +123,7 @@ public class AnuncioController extends Controller{
 	public String removerAnuncio(Anuncio anuncio) throws NoSuchAlgorithmException{
 		
 		EntityManager manager = getEntityManager();
-		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);s
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);

@@ -25,7 +25,7 @@ public class AnuncioRepository {
 		manager.remove(anuncio);
 	}
 	public void atualizar(Anuncio anuncio) {
-		manager.persist(anuncio);
+		manager.merge(anuncio);
 	}
 	
 	public ArrayList<Anuncio> getAnunciosByIdProp(int id){
