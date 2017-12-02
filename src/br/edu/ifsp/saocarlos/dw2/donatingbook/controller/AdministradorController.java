@@ -112,6 +112,27 @@ public class AdministradorController extends Controller{
 		return "/donating-book/client/admin/doadores.xhtml";
 	}
 	
+	public String ativarVoluntario(Voluntario voluntario) {
+		EntityManager manager = getEntityManager();
+		
+		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
+		
+		voluntario.setStatus(1);
+		voluntarioRepository.ativar(voluntario);
+		
+		return "/donating-book/client/admin/doadores.xhtml";
+	}
+	
+	public String ativarOrganizacao(Organizacao organizacao) {
+		EntityManager manager = getEntityManager();
+		
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		organizacao.setStatus(1);
+		organizacaoRepository.ativar(organizacao);
+		
+		return "/donating-book/client/admin/organizacoes.xhtml";
+	}
+	
 	public ArrayList<Organizacao> getOrganizacoesAproved() throws NoSuchAlgorithmException{
 		
 		EntityManager manager = getEntityManager();
@@ -122,6 +143,16 @@ public class AdministradorController extends Controller{
 		return organizacoes;
 	}
 	
+	public ArrayList<Organizacao> getOrganizacoesDesativadas() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		
+		organizacoes = organizacaoRepository.getOrganizacoesDesativadas();
+		return organizacoes;
+	}
+	
 	public ArrayList<Voluntario> getVoluntarios() throws NoSuchAlgorithmException{
 		
 		EntityManager manager = getEntityManager();
@@ -129,6 +160,16 @@ public class AdministradorController extends Controller{
 		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
 		
 		voluntarios = voluntarioRepository.getVoluntarios();
+		return voluntarios;
+	}
+	
+	public ArrayList<Voluntario> getVoluntariosDesativados() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
+		
+		voluntarios = voluntarioRepository.getVoluntariosDesativados();
 		return voluntarios;
 	}
 }

@@ -16,7 +16,8 @@
 	<title>Editar Dados Doador</title>
 </h:head>
 <h:body>
-	<nav class="navbar navbar-default">
+	<h:form>
+		<nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -36,9 +37,6 @@
                     <li>
                         <a href="/donating-book/client/doador/lista_organizacoes.xhtml">Organizações</a>
                     </li>
-                    <li>
-                        <a href="/donating-book/client/doador/lista_anuncios.xhtml">Anúncios</a>
-                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -48,6 +46,11 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="/donating-book/client/doador/editar_dados_doador.xhtml">Editar</a>
+                            </li>
+                            <li>
+                            	<h:commandLink>
+                            		<a>Desativar minha conta</a>
+                            	</h:commandLink>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
@@ -160,5 +163,6 @@
 			</div>
 		</div>		
 	</div>
+	</h:form>
 </h:body>
 </html>

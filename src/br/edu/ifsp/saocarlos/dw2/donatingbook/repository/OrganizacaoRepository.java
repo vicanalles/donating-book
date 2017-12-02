@@ -28,6 +28,10 @@ public class OrganizacaoRepository {
 		manager.persist(organizacao);
 	}
 	
+	public void ativar(Organizacao organizacao) {
+		manager.persist(organizacao);
+	}
+	
 	/*
 	 * Códigos para verificação de status:
 	 * 0 - Organização aguardando aprovação do administrador, não pode acessar o sistema
@@ -63,6 +67,19 @@ public class OrganizacaoRepository {
 	public ArrayList<Organizacao> getOrganizacoesAproved(){
 		ArrayList<Organizacao> organizacoes = new ArrayList<Organizacao>();
 		Query query = manager.createQuery("SELECT o FROM Organizacao o WHERE status = 1");
+		try {
+			organizacoes = (ArrayList<Organizacao>)query.getResultList();
+			return organizacoes;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return organizacoes;
+		}
+	}
+	
+	public ArrayList<Organizacao> getOrganizacoesDesativadas() {
+		
+		ArrayList<Organizacao> organizacoes = new ArrayList<Organizacao>();
+		Query query = manager.createQuery("SELECT o FROM Organizacao o WHERE status = 2");
 		try {
 			organizacoes = (ArrayList<Organizacao>)query.getResultList();
 			return organizacoes;

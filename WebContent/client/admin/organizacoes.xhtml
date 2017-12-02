@@ -70,10 +70,10 @@
         </div>
         <table class="table table-hover">
             <thead>
-                <th>ONG</th>
-                <th>Data de cadastro</th>
-                <th>Telefone</th>
+                <th>Nome</th>
                 <th>E-mail</th>
+                <th>Telefone</th>
+                <th></th>
                 <th></th>
             </thead>
             <tbody>
@@ -85,6 +85,36 @@
                    		<td class="action-item action-icon">
                     		<h:commandLink action="#{administradorController.desativarOrganizacao(o)}">
                     			<button class="btn btn-success btn-block">Desativar</button>
+                    		</h:commandLink>
+                    	</td>                    
+	                </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
+    	</h:form>
+    </div>
+    <div class="container">
+    	<h:form>
+    		<div class="page-header">
+            <h1>Organizações cadastradas</h1>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>
+                <ui:repeat var="o" value="#{administradorController.organizacoesDesativadas}">
+	           		<tr>
+                    	<td>#{o.nome}</td>
+                    	<td>#{o.email}</td>
+                    	<td>#{o.telefone}</td>
+                   		<td class="action-item action-icon">
+                    		<h:commandLink action="#{administradorController.ativarOrganizacao(o)}">
+                    			<button class="btn btn-success btn-block">Ativar</button>
                     		</h:commandLink>
                     	</td>                    
 	                </tr>

@@ -3,10 +3,13 @@ package br.edu.ifsp.saocarlos.dw2.donatingbook.controller;
 import java.security.NoSuchAlgorithmException;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.UsuarioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.VoluntarioRepository;
 
 @ManagedBean
@@ -121,5 +124,23 @@ public class VoluntarioController extends Controller {
 		}else {
 			return "/cadastro_voluntario.xhtml";
 		}
+	}
+	
+	public String desativarVoluntario() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		EntityManager manager = getEntityManager();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+		String email = (String) session.getAttribute("usuario");
+		
+		UsuarioRepository usuarioRepo = new UsuarioRepository(manager);
+		int userId = usuarioRepo.getUserIdByEmail(email);
+		
+		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
+		Voluntario voluntario = voluntarioRepository.getVoluntarioById(userId); 
+		voluntario.setStatus(0);
+		voluntarioRepository.desativar(voluntario);
+		
+		return "/index.xhtml";
 	}
 }

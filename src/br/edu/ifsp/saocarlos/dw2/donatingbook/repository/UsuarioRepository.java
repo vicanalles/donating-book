@@ -39,4 +39,17 @@ public class UsuarioRepository {
 			return 0;
 		}
 	}
+	
+	public int getUserIdByEmail(String email) {
+		Query query = manager.createQuery("SELECT u FROM Usuario u WHERE u.email LIKE ?1");
+		query.setParameter(1, email);
+		try {
+			Usuario usuario = null;
+			usuario = (Usuario)query.getSingleResult();
+			
+			return usuario.getId();
+		}catch(NoResultException e) {
+			return 0;
+		}
+	}
 }

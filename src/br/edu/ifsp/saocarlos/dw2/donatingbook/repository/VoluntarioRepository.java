@@ -25,6 +25,10 @@ public class VoluntarioRepository {
 		manager.persist(voluntario);
 	}
 	
+	public void ativar(Voluntario voluntario) {
+		manager.persist(voluntario);
+	}
+	
 	/*
 	 * Códigos para verificação de status:
 	 * 0 - Voluntário desativado, não pode acessar o sistema
@@ -35,6 +39,20 @@ public class VoluntarioRepository {
 		
 		ArrayList<Voluntario> voluntarios = new ArrayList<Voluntario>();
 		Query query = manager.createQuery("SELECT v FROM Voluntario v WHERE status = 1");
+		
+		try {
+			voluntarios = (ArrayList<Voluntario>)query.getResultList();
+			return voluntarios;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return voluntarios;
+		}
+	}
+	
+	public ArrayList<Voluntario> getVoluntariosDesativados(){
+		
+		ArrayList<Voluntario> voluntarios = new ArrayList<Voluntario>();
+		Query query = manager.createQuery("SELECT v FROM Voluntario v WHERE status = 0");
 		
 		try {
 			voluntarios = (ArrayList<Voluntario>)query.getResultList();
@@ -72,6 +90,20 @@ public class VoluntarioRepository {
 		}catch(NoResultException e) {
 			e.printStackTrace();
 			return 0;
+		}
+	}
+
+	public Voluntario getVoluntarioById(int id) {
+		
+		Voluntario voluntario = null;
+		Query query = manager.createQuery("SELECT v FROM Voluntario v WHERE v.id = ?1");
+		query.setParameter(1, id);
+		try {
+			voluntario = (Voluntario) query.getSingleResult();
+			return voluntario;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return voluntario;
 		}
 	}
 }
