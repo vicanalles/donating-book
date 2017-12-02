@@ -31,6 +31,7 @@ public class OrganizacaoController extends Controller {
 	private String estado;
 	private String cidade;
 	private ArrayList<Organizacao> organizacoes;
+	private ArrayList<Anuncio> anuncios;
 	
 	public int getId() {
 		return id;
@@ -149,7 +150,7 @@ public class OrganizacaoController extends Controller {
 		return organizacoes;
 	}
 	
-public String getOngById(int id) throws NoSuchAlgorithmException{
+	public String getOngById(int id) throws NoSuchAlgorithmException{
 		
 		EntityManager manager = getEntityManager();
 		
@@ -158,5 +159,41 @@ public String getOngById(int id) throws NoSuchAlgorithmException{
 		String nomeOng = organizacaoRepository.getOngById(id);
 		return nomeOng;
 	}
+	
+	public String visualizar(Organizacao ong) throws NoSuchAlgorithmException{
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+		session.setAttribute("ong", ong);
+		System.out.println(ong.getId());
+		
+		this.email = ong.getEmail();
+		this.nome = ong.getNome();
+		this.cpf = ong.getCpf();
+		this.telefone = ong.getTelefone();
+		this.rua = ong.getRua();
+		this.numero = ong.getNumero();
+		this.complemento = ong.getComplemento();
+		this.bairro = ong.getBairro();
+		this.estado = ong.getEstado();
+		this.cidade = ong.getCidade();
+		
+		return "/client/organizacao/visualizar.xhtml";
+	}
+	
+	public ArrayList<Anuncio> getAnuncios() throws NoSuchAlgorithmException{	
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+		Organizacao ong = (Organizacao) session.getAttribute("ong");
+		
+		EntityManager manager = getEntityManager();
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
+		anuncios = anuncioRepository.getAnunciosByIdProp(ong.getId());
+		return anuncios;
+	}
+
 	
 }

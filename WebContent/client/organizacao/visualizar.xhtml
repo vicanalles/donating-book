@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	
@@ -13,10 +14,13 @@
 	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
 	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
 	
-	<title>Lista de Anúncios</title>
+	<title>
+		<h:outputText value="#{organizacaoController.nome}"></h:outputText>
+	</title>
 </h:head>
 <h:body>
-	<nav class="navbar navbar-default">
+	<h:form>
+		<nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -33,11 +37,8 @@
                     <li>
                         <a href="/donating-book/client/doador/home_doador.xhtml">Home</a>
                     </li>
-                    <li>
-                        <a href="/donating-book/client/doador/lista_organizacoes.xhtml">Organizações</a>
-                    </li>
                     <li class="active">
-                        <a href="/donating-book/client/doador/lista_anuncios.xhtml">Anúncios</a>
+                        <a href="/donating-book/client/doador/lista_organizacoes.xhtml">Organizações</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -47,7 +48,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="/donating-book/client/doador/editar_dados_doador.xhtml">Editar Perfil</a>
+                                <a href="/donating-book/client/doador/editar_dados_doador.xhtml">Editar</a>
                             </li>
                             <li>
                             	<h:commandLink action="#{voluntarioController.desativarVoluntario}" value="Desativar minha conta"/>
@@ -64,56 +65,60 @@
     </nav>
     <div class="container">
         <div class="page-header">
-            <h1>Lista de anúncios</h1>
+            <h1>
+            <h:outputText value="#{organizacaoController.nome}"></h:outputText>
+            </h1>
         </div>
+        <div class="row">
+        <div class="col-xs-6">
+                <label for=""><b>CNPJ:</b></label>
+                <h:outputText value=" #{organizacaoController.cpf}"></h:outputText>
+        </div>
+        <div class="col-xs-12">
+            	<label for=""><b>Endereço:</b></label>
+                <h:outputText value=" #{organizacaoController.rua}"></h:outputText>,
+            	<h:outputText value=" #{organizacaoController.numero}"></h:outputText>
+                <h:outputText value="#{organizacaoController.complemento}"></h:outputText>
+				<h:outputText value=" - #{organizacaoController.bairro}"></h:outputText>
+            	<h:outputText value=" - #{organizacaoController.cidade}"></h:outputText>
+                <h:outputText value="/#{organizacaoController.estado}"></h:outputText>
+            </div>
+			<div class="col-sm-6">
+            	<label for=""><b>E-mail:</b></label>
+                <h:outputText value=" #{organizacaoController.email}"></h:outputText>
+            </div>
+            <div class="col-sm-6">
+            	<label for=""><b>Telefone: </b></label>
+				<h:outputText value=" #{organizacaoController.telefone}"></h:outputText>
+            </div>
+           </div>
+           <br/>
+           <label>Anúncios</label>
         <table class="table table-hover">
             <thead>
-                <th>Livro</th>
+                <th>Título</th>
+                <th>Descrição</th>
                 <th>Quantidade</th>
-                <th>Data de publicação</th>
-                <th>Criado por</th>
-                <th></th>
                 <th></th>
             </thead>
             <tbody>
-                <tr>
-                    <td>Lorem Ipsum</td>
-                    <td>14</td>
-                    <td>15/08/2017</td>
-                    <td>admin1</td>
-                    <td>
-                        <a href="#" class="btn btn-danger btn-block">Demonstrar Interesse</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem Ipsum</td>
-                    <td>14</td>
-                    <td>15/08/2017</td>
-                    <td>admin1</td>
-                    <td>
-                        <a href="#" class="btn btn-danger btn-block">Demonstrar Interesse</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem Ipsum</td>
-                    <td>14</td>
-                    <td>15/08/2017</td>
-                    <td>admin1</td>
-                    <td>
-                        <a href="#" class="btn btn-danger btn-block">Demonstrar Interesse</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lorem Ipsum</td>
-                    <td>14</td>
-                    <td>15/08/2017</td>
-                    <td>admin1</td>
-                    <td>
-                        <a href="#" class="btn btn-danger btn-block">Demonstrar Interesse</a>
-                    </td>
-                </tr>
+                <ui:repeat var="a" value="#{organizacaoController.anuncios}">
+	           		<tr>
+	                    <td>#{a.titulo}</td>
+	                    <td>#{a.descricao}</td>
+	                    <td>#{a.quantidade}</td>
+	                    <td class="action-item action-icon">
+	                    	<h:commandLink action="#{anuncioController.doar(a)}">
+	                    		<button class="btn btn-success btn-block">Doar</button>
+	                    	</h:commandLink>
+	                    </td>                
+	                </tr>
+	                
+                </ui:repeat>
             </tbody>
         </table>
+		
     </div>
+	</h:form>
 </h:body>
 </html>
