@@ -14,7 +14,9 @@
 	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
 	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
 	
-	<title>Lista de Organizações</title>
+	<title>
+		<h:outputText value="#{organizacaoController.nome}"></h:outputText>
+	</title>
 </h:head>
 <h:body>
 	<h:form>
@@ -46,7 +48,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <h:commandLink action="#{voluntarioController.editarVoluntario}" value="Editar Perfil"/>
+                                <a href="/donating-book/client/doador/editar_dados_doador.xhtml">Editar</a>
                             </li>
                             <li>
                             	<h:commandLink action="#{voluntarioController.desativarVoluntario}" value="Desativar minha conta"/>
@@ -63,30 +65,59 @@
     </nav>
     <div class="container">
         <div class="page-header">
-            <h1>Organizações</h1>
+            <h1>
+            <h:outputText value="#{organizacaoController.nome}"></h:outputText>
+            </h1>
         </div>
+        <div class="row">
+        <div class="col-xs-6">
+                <label for=""><b>CNPJ:</b></label>
+                <h:outputText value=" #{organizacaoController.cpf}"></h:outputText>
+        </div>
+        <div class="col-xs-12">
+            	<label for=""><b>Endereço:</b></label>
+                <h:outputText value=" #{organizacaoController.rua}"></h:outputText>,
+            	<h:outputText value=" #{organizacaoController.numero}"></h:outputText>
+                <h:outputText value="#{organizacaoController.complemento}"></h:outputText>
+				<h:outputText value=" - #{organizacaoController.bairro}"></h:outputText>
+            	<h:outputText value=" - #{organizacaoController.cidade}"></h:outputText>
+                <h:outputText value="/#{organizacaoController.estado}"></h:outputText>
+            </div>
+			<div class="col-sm-6">
+            	<label for=""><b>E-mail:</b></label>
+                <h:outputText value=" #{organizacaoController.email}"></h:outputText>
+            </div>
+            <div class="col-sm-6">
+            	<label for=""><b>Telefone: </b></label>
+				<h:outputText value=" #{organizacaoController.telefone}"></h:outputText>
+            </div>
+           </div>
+           <br/>
+           <label>Anúncios</label>
         <table class="table table-hover">
             <thead>
-                <th>ONG</th>
-                <th>E-mail</th>
-                <th>Telefone</th>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
                 <th></th>
             </thead>
             <tbody>
-                <ui:repeat var="o" value="#{organizacaoController.organizacoesAproved}">
+                <ui:repeat var="a" value="#{organizacaoController.anuncios}">
 	           		<tr>
-	                    <td>#{o.nome}</td>
-	                    <td>#{o.email}</td>
-	                    <td>#{o.telefone}</td>	                    
+	                    <td>#{a.titulo}</td>
+	                    <td>#{a.descricao}</td>
+	                    <td>#{a.quantidade}</td>
 	                    <td class="action-item action-icon">
-	                    	<h:commandLink action="#{organizacaoController.visualizar(o)}">
-	                    		<button class="btn btn-primary btn-block">Visualizar</button>
+	                    	<h:commandLink action="#{anuncioController.doar(a)}">
+	                    		<button class="btn btn-success btn-block">Doar</button>
 	                    	</h:commandLink>
 	                    </td>                
 	                </tr>
+	                
                 </ui:repeat>
             </tbody>
         </table>
+		
     </div>
 	</h:form>
 </h:body>
