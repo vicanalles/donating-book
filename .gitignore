@@ -3,3 +3,8 @@
 build/*
 
 *.class
+/bin/
+
+\.settings/
+
+\.project
