@@ -6,9 +6,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Usuario;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.UsuarioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.VoluntarioRepository;
 
@@ -142,5 +145,70 @@ public class VoluntarioController extends Controller {
 		voluntarioRepository.desativar(voluntario);
 		
 		return "/index.xhtml";
+	}
+	
+	public String editarVoluntario() throws NoSuchAlgorithmException {
+		
+		EntityManager manager = getEntityManager();
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.TRUE);
+		String email = (String) session.getAttribute("usuario");
+		
+		UsuarioRepository usuarioRepo = new UsuarioRepository(manager);
+		int userId = usuarioRepo.getUserIdByEmail(email);
+		
+		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
+		Voluntario voluntario = voluntarioRepository.getVoluntarioById(userId);
+		
+		this.email = voluntario.getEmail();
+		this.nome = voluntario.getNome();
+		this.cpf = voluntario.getCpf();
+		this.telefone = voluntario.getTelefone();
+		this.rua = voluntario.getRua();
+		this.numero = voluntario.getNumero();
+		this.complemento = voluntario.getComplemento();
+		this.bairro = voluntario.getBairro();
+		this.estado = voluntario.getEstado();
+		this.cidade = voluntario.getCidade();
+		
+		return "/client/doador/editar_dados_doador.xhtml";
+	}
+	
+	public String atualizarVoluntario() throws NoSuchAlgorithmException{
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.TRUE);
+		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+		
+		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
+		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
+		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
+		String emailUser = (String) session.getAttribute("usuario");
+		int idUser = voluntarioRepository.getVoluntarioByEmail(emailUser);
+		
+		Usuario usuario = usuarioRepository.getUserById(idUser);
+		Voluntario voluntario = voluntarioRepository.getVoluntarioById(idUser);
+		if(senha != null && senha2 != null) {
+			if(senha.equals(senha2)) {
+				usuario.setSenha(senha);
+			}
+		}
+		usuario.setEmail(email);
+		voluntario.setNome(nome);
+		voluntario.setCpf(cpf);
+		voluntario.setTelefone(telefone);
+		voluntario.setRua(rua);
+		voluntario.setNumero(numero);
+		voluntario.setComplemento(complemento);
+		voluntario.setBairro(bairro);
+		voluntario.setEstado(estado);
+		voluntario.setCidade(cidade);
+		
+		usuarioRepository.atualizar(usuario);
+		voluntarioRepository.atualizar(voluntario);
+		
+		return "/client/doador/home_doador.xhtml";
 	}
 }

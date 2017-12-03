@@ -46,12 +46,10 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="/donating-book/client/doador/editar_dados_doador.xhtml">Editar</a>
+                                <h:commandLink action="#{voluntarioController.editarVoluntario}" value="Editar Perfil"/>
                             </li>
                             <li>
-                            	<h:commandLink>
-                            		<a>Desativar minha conta</a>
-                            	</h:commandLink>
+                            	<h:commandLink action="#{voluntarioController.desativarVoluntario}" value="Desativar minha conta"/>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
@@ -81,11 +79,9 @@
 	                    <td>#{o.email}</td>
 	                    <td>#{o.telefone}</td>
 	                    <h:form>
-	                    	<td class="action-item action-icon">
-	                    	
+	                    	<td class="action-item action-icon">	                    	
 	                    		<button class="btn btn-primary btn-block">Visualizar anúncios</button>
-
-	                    </td>
+		                    </td>
 	                    </h:form>	                    
 	                </tr>
 	                

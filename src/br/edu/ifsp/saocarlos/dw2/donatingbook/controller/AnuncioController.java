@@ -169,8 +169,6 @@ public class AnuncioController extends Controller{
 		anuncio.setQuantidade(quantidade);
 		anuncio.setIdProp(idProp);
 		
-		System.out.println(anuncio.getId());
-		
 		anuncioRepository.atualizar(anuncio);
 		
 		return "/client/organizacao/meus_anuncios.xhtml";

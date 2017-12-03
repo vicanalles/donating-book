@@ -29,6 +29,10 @@ public class VoluntarioRepository {
 		manager.persist(voluntario);
 	}
 	
+public void atualizar(Voluntario voluntario) {
+		manager.merge(voluntario);
+	}
+	
 	/*
 	 * Códigos para verificação de status:
 	 * 0 - Voluntário desativado, não pode acessar o sistema

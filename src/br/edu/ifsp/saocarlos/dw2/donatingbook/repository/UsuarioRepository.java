@@ -14,6 +14,10 @@ public class UsuarioRepository {
 		this.manager = manager;
 	}
 	
+	public void atualizar(Usuario usuario) {
+		manager.merge(usuario);
+	}
+	
 	public String login(String email, String senha) {
 		Query query = manager.createQuery("SELECT u FROM Usuario u WHERE u.email LIKE ?1 AND u.senha = ?2");
 		query.setParameter(1, email).setParameter(2, senha);
@@ -50,6 +54,18 @@ public class UsuarioRepository {
 			return usuario.getId();
 		}catch(NoResultException e) {
 			return 0;
+		}
+	}
+	
+	public Usuario getUserById(int id) {
+		Query query = manager.createQuery("SELECT u FROM Usuario u WHERE u.id LIKE ?1");
+		query.setParameter(1, id);
+		Usuario usuario = null;
+		try {
+			usuario = (Usuario)query.getSingleResult();
+			return usuario;
+		}catch(NoResultException e) {
+			return usuario;
 		}
 	}
 }
