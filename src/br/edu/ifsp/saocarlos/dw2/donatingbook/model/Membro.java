@@ -18,12 +18,20 @@ public class Membro extends Usuario{
 	private String bairro;
 	private String estado;
 	private String cidade;
+	private int ongId;
+	private int status;
 	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public int getOngId() {
+		return ongId;
+	}
+	public void setOngId(int ongId) {
+		this.ongId = ongId;
 	}
 	public String getCpf() {
 		return cpf;
@@ -72,5 +80,11 @@ public class Membro extends Usuario{
 	}
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }

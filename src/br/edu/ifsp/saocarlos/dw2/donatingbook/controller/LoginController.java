@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.MembroRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.UsuarioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.VoluntarioRepository;
@@ -77,11 +78,19 @@ public class LoginController extends Controller {
 			return "Login Organizacao";
 		}
 		else if(loginResult.equals("membro")) {
-			ExternalContext externalContext = context.getExternalContext();
-			HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
-			session.setAttribute("usuario", email);
-			System.out.println("HOME DO MEMBRO");
-			return "/client/membro/home_membro.xhtml";
+			MembroRepository membroRepository = new MembroRepository(manager);
+			int membroStatus = membroRepository.status(loginIdResult);
+			if(membroStatus == 0) {
+				System.out.println("Membro desativado");
+				return "Usuário desativado";
+			}else if(membroStatus == 1) {
+				ExternalContext externalContext = context.getExternalContext();
+				HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+				session.setAttribute("usuario", email);
+				System.out.println("HOME DO MEMBRO");
+				return "/client/membro/home_membro.xhtml";
+			}
+			return "Login Membro";
 		}
 		else if(loginResult.equals("Administrador")) {
 			ExternalContext externalContext = context.getExternalContext();

@@ -114,4 +114,17 @@ public class OrganizacaoRepository {
 			return "";
 		}
 	}
+
+	public int getOngIdByCodigo(String codigoOng) {
+		Organizacao organizacao = null;
+		Query query = manager.createQuery("SELECT o FROM Organizacao o WHERE o.codigo = ?1");
+		query.setParameter(1, codigoOng);
+		try {
+			organizacao = (Organizacao) query.getSingleResult();
+			return organizacao.getId();
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return organizacao.getId();
+		}
+	}
 }

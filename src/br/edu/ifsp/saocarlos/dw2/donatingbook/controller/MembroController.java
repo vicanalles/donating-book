@@ -1,13 +1,17 @@
 package br.edu.ifsp.saocarlos.dw2.donatingbook.controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Membro;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.MembroRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 
 @ManagedBean
 public class MembroController extends Controller {
@@ -24,7 +28,15 @@ public class MembroController extends Controller {
 	private String bairro;
 	private String estado;
 	private String cidade;
+	private String codigoOng;
+	private ArrayList<Membro> membros;
 	
+	public String getCodigoOng() {
+		return codigoOng;
+	}
+	public void setCodigoOng(String codigoOng) {
+		this.codigoOng = codigoOng;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -102,26 +114,84 @@ public class MembroController extends Controller {
 		
 		FacesContext fc = FacesContext.getCurrentInstance();
 		EntityManager manager = getEntityManager();
-		if(senha.equals(senha2)) {
-			MembroRepository membroRepository = new MembroRepository(manager);
-			Membro membro = new Membro();
-			membro.setEmail(email);
-			membro.setSenha(senha);
-			membro.setNome(nome);
-			membro.setCpf(cpf);
-			membro.setTelefone(telefone);
-			membro.setRua(rua);
-			membro.setNumero(numero);
-			membro.setComplemento(complemento);
-			membro.setBairro(bairro);
-			membro.setEstado(estado);
-			membro.setCidade(cidade);
-			membro.setTipo("membro");
-			membroRepository.inserir(membro);
+		MembroRepository membroRepository = new MembroRepository(manager);
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		Membro membro = new Membro();
+		if(codigoOng != null && senha != null && senha2 != null && email != null) {			
+			int codigo = organizacaoRepository.getOngIdByCodigo(codigoOng);
+			if(codigo != 0 && senha.equals(senha2)) {
+				membro.setOngId(codigo);
+				membro.setEmail(email);
+				membro.setSenha(senha);
+				membro.setNome(nome);
+				membro.setCpf(cpf);
+				membro.setTelefone(telefone);
+				membro.setRua(rua);
+				membro.setNumero(numero);
+				membro.setComplemento(complemento);
+				membro.setBairro(bairro);
+				membro.setEstado(estado);
+				membro.setCidade(cidade);
+				membro.setTipo("membro");
+				membro.setStatus(1);
+			}
 			
-			return "/login.xhtml";
+			membroRepository.inserir(membro);
+			return "/index.xhtml";
 		}else {
 			return "/cadastro_membro_ong.xhtml";
 		}
+	}
+	
+	public ArrayList<Membro> getMembrosAtivosOng() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+		String emailUser = (String) session.getAttribute("usuario");
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		int organizacaoId = organizacaoRepository.getOngByEmail(emailUser);
+		
+		MembroRepository membroRepository = new MembroRepository(manager);
+		membros = membroRepository.getMembrosByOngId(organizacaoId);
+		
+		return membros;
+	}
+	
+	public ArrayList<Membro> getMembrosDesativadosOng() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
+		String emailUser = (String) session.getAttribute("usuario");
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		int organizacaoId = organizacaoRepository.getOngByEmail(emailUser);
+		
+		MembroRepository membroRepository = new MembroRepository(manager);
+		membros = membroRepository.getMembrosDesativadosOng(organizacaoId);
+		
+		return membros;
+	}
+	
+	public String desativarMembro(Membro membro) throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		MembroRepository membroRepository = new MembroRepository(manager);
+		membro.setStatus(0);
+		membroRepository.desativar(membro);
+		
+		return "/client/organizacao/participantes.xhtml";
+	}
+	
+	public String ativarMembro(Membro membro) throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		MembroRepository membroRepository = new MembroRepository(manager);
+		membro.setStatus(1);
+		membroRepository.ativar(membro);
+		
+		return "/client/organizacao/participantes.xhtml";
 	}
 }
