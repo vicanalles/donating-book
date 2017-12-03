@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	
+	<link rel="stylesheet" type="text/css" href="/donating-book/client/lib/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="/donating-book/client/lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="/donating-book/client/css/style.css"/>
+	
+	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
+	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
+	
+	<title>Cadastrar Novo Livro</title>
+</h:head>
+<h:body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">Doação de Livros</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+                    <li>
+                        <a href="home_admin.xhtml">Home</a>
+                    </li>
+                    <li>
+                        <a href="organizacoes.xhtml">Organizações</a>
+                    </li>
+                    <li>
+                        <a href="doadores.xhtml">Doadores</a>
+                    </li>
+                    <li class="active">
+                        <a href="cadastro_administrador.xhtml">Novo Livro</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/donating-book/client/admin/editar_perfil_admin.xhtml">Editar</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="/donating-book/index.xhtml">Sair</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="card">
+			<ul class="nav nav-tabs nav-justified">
+				<li>
+                    <a>Novo Livro</a>
+                </li>
+			</ul>
+			<div class="tab-content">
+				<div id="adm" class="tab-pane fade in active">
+					<div class="row">
+						<h:form>
+							<p class="text-center">Dados do livro</p>
+							<div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="">Nome</label>
+                                    <h:inputText type="email" class="form-control" id="email" ></h:inputText>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="">Autor</label>
+                                    <h:inputSecret class="form-control" placeholder="Senha"></h:inputSecret>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="">Descrição</label>
+                                    <h:inputSecret class="form-control" placeholder="Senha"></h:inputSecret>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+				            <div class="form-group">
+				                <h:outputLabel for="">Quantidade</h:outputLabel>
+				                <h:selectOneMenu class="form-control">
+				                    <f:selectItem itemValue="1" itemLabel="1"></f:selectItem>
+				                    <f:selectItem itemValue="2" itemLabel="2"></f:selectItem>
+				                    <f:selectItem itemValue="3" itemLabel="3"></f:selectItem>
+				                    <f:selectItem itemValue="4" itemLabel="4"></f:selectItem>
+				                    <f:selectItem itemValue="5" itemLabel="5"></f:selectItem>
+				                    <f:selectItem itemValue="6" itemLabel="6"></f:selectItem>
+				                    <f:selectItem itemValue="7" itemLabel="7"></f:selectItem>
+				                    <f:selectItem itemValue="8" itemLabel="8"></f:selectItem>
+				                    <f:selectItem itemValue="9" itemLabel="9"></f:selectItem>
+				                    <f:selectItem itemValue="10" itemLabel="10"></f:selectItem>
+				                </h:selectOneMenu>
+			            	</div>
+			        	</div>                      
+                        <div class="col-xs-12">
+                       		<h:commandLink class="btn btn-primary btn-block">Cadastrar Novo Livro</h:commandLink>
+                        </div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

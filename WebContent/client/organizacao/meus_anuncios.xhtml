@@ -70,7 +70,7 @@
         <table class="table table-hover">
             <thead>
                 <th>Livro</th>
-                <th>Quantidade</th>
+                <th>Descrição</th>
                 <th></th>
                 <th></th>
             </thead>
@@ -79,7 +79,7 @@
             		<ui:repeat var="a" value="#{anuncioController.meusAnunciosByIdProp}">
 	                	<tr>
 	                		<td>#{a.titulo}</td>
-	                		<td>#{a.quantidade}</td>
+	                		<td>#{a.descricao}</td>
 	                		<td class="action-item action-icon">
 	                    		<h:commandLink action="#{anuncioController.editarAnuncio(a)}">
 	                    			<button class="btn btn-primary btn-block">Editar</button>

@@ -23,7 +23,6 @@ import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.VoluntarioRepository;
 public class AnuncioController extends Controller{
 	
 	private String titulo;
-	private int quantidade;
 	private String descricao;
 	private int idProprietario;
 	private ArrayList<Anuncio> anuncios;
@@ -47,12 +46,6 @@ public class AnuncioController extends Controller{
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public int getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
 	public String getDescricao() {
 		return descricao;
 	}
@@ -70,7 +63,6 @@ public class AnuncioController extends Controller{
 			AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
 			Anuncio anuncio = new Anuncio();
 			anuncio.setTitulo(titulo);
-			anuncio.setQuantidade(quantidade);
 			anuncio.setDescricao(descricao);
 			
 			String emailUser = (String) session.getAttribute("usuario");
@@ -144,7 +136,6 @@ public class AnuncioController extends Controller{
 		session.setAttribute("anuncio", anuncio);
 		System.out.println(anuncio.getId());
 		this.titulo = anuncio.getTitulo();
-		this.quantidade = anuncio.getQuantidade();
 		this.descricao = anuncio.getDescricao();
 		
 		return "/client/organizacao/editar_anuncio.xhtml";
@@ -166,7 +157,6 @@ public class AnuncioController extends Controller{
 		Anuncio anuncio = (Anuncio) session.getAttribute("anuncio");
 		anuncio.setDescricao(descricao);
 		anuncio.setTitulo(titulo);
-		anuncio.setQuantidade(quantidade);
 		anuncio.setIdProp(idProp);
 		
 		anuncioRepository.atualizar(anuncio);

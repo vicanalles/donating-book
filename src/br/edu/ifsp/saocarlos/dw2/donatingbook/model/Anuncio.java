@@ -3,6 +3,8 @@ package br.edu.ifsp.saocarlos.dw2.donatingbook.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -12,11 +14,13 @@ public class Anuncio {
 	@GeneratedValue
 	private int id;
 	private String titulo;
-	private int quantidade;
 	private String descricao;
 	private int idProp;
 	@Transient
 	private String nomeOng;
+	@ManyToOne
+	@JoinColumn(name="idLivro")
+	private Livro livro;
 	
 	public void setId(int id) {
 		this.id = id;
@@ -29,12 +33,6 @@ public class Anuncio {
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-	public int getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -54,4 +52,11 @@ public class Anuncio {
 	public void setNomeOng(String nomeOng) {
 		this.nomeOng = nomeOng;
 	}
+	public Livro getLivro() {
+		return livro;
+	}
+	public void setLivro(Livro livro) {
+		this.livro = livro;
+	}
+	
 }
