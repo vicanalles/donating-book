@@ -1,8 +1,10 @@
 package br.edu.ifsp.saocarlos.dw2.donatingbook.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
 
 @Entity
 @PrimaryKeyJoinColumn(name="id")
@@ -19,6 +21,8 @@ public class Organizacao extends Usuario{
 	private String cidade;
 	private int status;
 	private String codigo;
+	@OneToMany(mappedBy="organizacao", targetEntity=Pedido.class)
+	private List<Pedido> pedidos;
 	
 	public String getCodigo() {
 		return codigo;
