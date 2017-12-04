@@ -122,6 +122,7 @@ public class VoluntarioController extends Controller {
 			voluntario.setEstado(estado);
 			voluntario.setCidade(cidade);
 			voluntario.setTipo("Voluntario");
+			voluntario.setStatus(1);
 			voluntarioRepository.inserir(voluntario);
 			return "/index.xhtml";
 		}else {
