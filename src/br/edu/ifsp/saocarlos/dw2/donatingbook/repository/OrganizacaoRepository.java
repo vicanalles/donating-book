@@ -127,4 +127,16 @@ public class OrganizacaoRepository {
 			return organizacao.getId();
 		}
 	}
+	
+	/*public ArrayList<Organizacao> getOrganizacoesRelatorio(){
+		ArrayList<Organizacao> organizacoes = null;
+		Query query = manager.createQuery("SELECT o FROM Organizacao o");
+		try {
+			organizacoes = (ArrayList<Organizacao>) query.getResultList();
+			return organizacoes;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return organizacoes;
+		}
+	}*/
 }
