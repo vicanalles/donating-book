@@ -13,7 +13,6 @@ public class Pedido {
 	@GeneratedValue
 	private int id;
 	private String titulo;
-	private String urlImagem;
 	private int quantidade;
 	private String descricao;
 	@ManyToOne
@@ -46,12 +45,6 @@ public class Pedido {
 	}
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-	public String getUrlImagem() {
-		return urlImagem;
-	}
-	public void setUrlImagem(String urlImagem) {
-		this.urlImagem = urlImagem;
 	}
 	public int getQuantidade() {
 		return quantidade;

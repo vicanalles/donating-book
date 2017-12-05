@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	
@@ -16,6 +17,7 @@
 	<title>Novo Pedido</title>
 </h:head>
 <h:body>
+	<h:form>
 	<nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -62,39 +64,35 @@
     <div class="container">
         <div class="page-header">
             <h1>Novo Pedido
-                <small>
-                    <a href="home_membro.xhtml" class="btn btn-success">Salvar</a>
-                </small>
+                <h:commandLink action="#{pedidoController.cadastrarPedido}" value="Salvar" class="btn btn-success">
+                </h:commandLink>
             </h1>
         </div>
-        <div class="form-group">
-            <label for="">Título do Anúncio</label>
-            <input type="text" class="form-control" placeholder="Título do livro"></input>
-        </div>
         <div class="row">
-            <div class="col-sm-9">
-                <div class="form-group">
-                    <label for="">Imagem</label>
-                    <input type="text" class="form-control" placeholder="url da imagem"></input>
-                </div>
-            </div>
+        	<div class="col-sm-9">
+        		<div class="form-group">
+		            <h:outputLabel for="">Título do Anúncio</h:outputLabel>
+		            <h:inputText value="#{pedidoController.titulo}" type="text" class="form-control" placeholder="Título do livro"></h:inputText>
+		        </div>
+        	</div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="">Quantidade</label>
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                    <h:outputLabel for="">Quantidade</h:outputLabel>
+                    <h:selectOneMenu value="#{pedidoController.quantidade}" class="form-control">
+                        <f:selectItem itemValue="1" itemLabel="1"></f:selectItem>
+                        <f:selectItem itemValue="2" itemLabel="2"></f:selectItem>
+                        <f:selectItem itemValue="3" itemLabel="3"></f:selectItem>
+                        <f:selectItem itemValue="4" itemLabel="4"></f:selectItem>
+                        <f:selectItem itemValue="5" itemLabel="5"></f:selectItem>
+                    </h:selectOneMenu>
                 </div>
             </div>
         </div>
         <div class="form-group">
-                <label for="">Descrição</label>
-                <textarea class="form-control" rows="5"></textarea>                
+                <h:outputLabel for="">Descrição</h:outputLabel>
+                <h:inputTextarea value="#{pedidoController.descricao}" class="form-control" rows="5"></h:inputTextarea>                
             </div>
     </div>
+    </h:form>
 </h:body>
 </html>

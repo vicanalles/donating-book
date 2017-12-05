@@ -70,4 +70,17 @@ public class MembroRepository {
 			return 3;
 		}
 	}
+
+	public Membro getMembroById(int id) {
+		Membro membro = new Membro();
+		Query query = manager.createQuery("SELECT m FROM Membro m WHERE id = ?0");
+		query.setParameter(0, id);
+		try {
+			membro = (Membro) query.getSingleResult();
+			return membro;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return membro;
+		}
+	}
 }

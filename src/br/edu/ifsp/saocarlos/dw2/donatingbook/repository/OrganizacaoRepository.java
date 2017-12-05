@@ -33,10 +33,10 @@ public class OrganizacaoRepository {
 	}
 	
 	/*
-	 * Códigos para verificação de status:
-	 * 0 - Organização aguardando aprovação do administrador, não pode acessar o sistema
-	 * 1 - Organização aprovada, pode acessar o sistema normalmente
-	 * 2 - Organização desativada, não pode acessar o sistema
+	 * Cï¿½digos para verificaï¿½ï¿½o de status:
+	 * 0 - Organizaï¿½ï¿½o aguardando aprovaï¿½ï¿½o do administrador, nï¿½o pode acessar o sistema
+	 * 1 - Organizaï¿½ï¿½o aprovada, pode acessar o sistema normalmente
+	 * 2 - Organizaï¿½ï¿½o desativada, nï¿½o pode acessar o sistema
 	 */
 	
 	public int status(int id) {
@@ -102,7 +102,7 @@ public class OrganizacaoRepository {
 		}
 	}
 	
-	public String getOngById(int id) {
+	public String getNomeOngById(int id) {
 		Organizacao organizacao = null;
 		Query query = manager.createQuery("SELECT o FROM Organizacao o WHERE o.id = ?1");
 		query.setParameter(1, id);
@@ -125,6 +125,19 @@ public class OrganizacaoRepository {
 		}catch(NoResultException e) {
 			e.printStackTrace();
 			return organizacao.getId();
+		}
+	}
+
+	public Organizacao getOngById(int ongId) {
+		Organizacao organizacao = null;
+		Query query = manager.createQuery("SELECT o FROM Organizacao o WHERE o.id = ?0");
+		query.setParameter(0, ongId);
+		try {
+			organizacao = (Organizacao) query.getSingleResult();
+			return organizacao;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return organizacao;
 		}
 	}
 	

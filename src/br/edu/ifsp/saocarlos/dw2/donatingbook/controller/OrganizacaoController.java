@@ -156,7 +156,7 @@ public class OrganizacaoController extends Controller {
 		
 		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
 		
-		String nomeOng = organizacaoRepository.getOngById(id);
+		String nomeOng = organizacaoRepository.getNomeOngById(id);
 		return nomeOng;
 	}
 	

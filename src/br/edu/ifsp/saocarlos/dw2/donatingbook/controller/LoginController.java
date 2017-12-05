@@ -47,33 +47,35 @@ public class LoginController extends Controller {
 			VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
 			int voluntarioStatus = voluntarioRepository.status(loginIdResult);
 			if(voluntarioStatus == 0) {
-				System.out.println("Voluntário desativado! Por favor, fale com o Administrador do Sistema!");
-				return "Voluntário desativado! Por favor, fale com o Administrador do Sistema!";
+				System.out.println("Voluntï¿½rio desativado! Por favor, fale com o Administrador do Sistema!");
+				return "Voluntï¿½rio desativado! Por favor, fale com o Administrador do Sistema!";
 			}else if(voluntarioStatus == 1) {
 				ExternalContext externalContext = context.getExternalContext();
 				HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 				session.setAttribute("usuario", email);
+				session.setAttribute("id", loginIdResult);
 				System.out.println("HOME DO VOLUNTARIO");
 				return "/client/doador/home_doador.xhtml";
 			}
-			return "Login Voluntário";
+			return "Login Voluntï¿½rio";
 		}
 		else if(loginResult.equals("Organizacao")) {
 			OrganizacaoRepository ongRepo = new OrganizacaoRepository(manager);
 			int ongStatus = ongRepo.status(loginIdResult);
 			if(ongStatus == 0) {
-				System.out.println("Aguarde aprovação do Administrador para poder acessar o sistema!");
-				return "Aguarde aprovação do Administrador para poder acessar o sistema!";
+				System.out.println("Aguarde aprovaï¿½ï¿½o do Administrador para poder acessar o sistema!");
+				return "Aguarde aprovaï¿½ï¿½o do Administrador para poder acessar o sistema!";
 			}else if(ongStatus == 1) {
 				System.out.println("Seja Bem vindo ao sistema Donating Book");
 				ExternalContext externalContext = context.getExternalContext();
 				HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 				session.setAttribute("usuario", email);
+				session.setAttribute("id", loginIdResult);
 				System.out.println("HOME DA ORGANIZACAO");
 				return "/client/organizacao/home_ong.xhtml";
 			}else if(ongStatus == 2) {
-				System.out.println("Organização desativada! Por favor, fale com o Administrador do Sistema!");
-				return "Organização desativada! Por favor, fale com o Administrador do Sistema!";
+				System.out.println("Organizaï¿½ï¿½o desativada! Por favor, fale com o Administrador do Sistema!");
+				return "Organizaï¿½ï¿½o desativada! Por favor, fale com o Administrador do Sistema!";
 			}
 			return "Login Organizacao";
 		}
@@ -82,11 +84,12 @@ public class LoginController extends Controller {
 			int membroStatus = membroRepository.status(loginIdResult);
 			if(membroStatus == 0) {
 				System.out.println("Membro desativado");
-				return "Usuário desativado";
+				return "Usuï¿½rio desativado";
 			}else if(membroStatus == 1) {
 				ExternalContext externalContext = context.getExternalContext();
 				HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 				session.setAttribute("usuario", email);
+				session.setAttribute("id", loginIdResult);
 				System.out.println("HOME DO MEMBRO");
 				return "/client/membro/home_membro.xhtml";
 			}
@@ -96,10 +99,11 @@ public class LoginController extends Controller {
 			ExternalContext externalContext = context.getExternalContext();
 			HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 			session.setAttribute("usuario", email);
+			session.setAttribute("id", loginIdResult);
 			System.out.println("HOME DO ADMINISTRADOR");
 			return "/client/admin/home_admin";
 		} else {
-			FacesMessage message = new FacesMessage("Senha ou usuário incorreto!");
+			FacesMessage message = new FacesMessage("Senha ou usuï¿½rio incorreto!");
 			message.setSeverity(FacesMessage.SEVERITY_INFO);
 			
 			context.addMessage("form:senha", message);
