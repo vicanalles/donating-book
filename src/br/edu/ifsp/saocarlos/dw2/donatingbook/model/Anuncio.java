@@ -21,6 +21,7 @@ public class Anuncio {
 	@ManyToOne
 	@JoinColumn(name="idLivro")
 	private Livro livro;
+	//private int quantidade;
 	
 	public void setId(int id) {
 		this.id = id;
@@ -57,6 +58,12 @@ public class Anuncio {
 	}
 	public void setLivro(Livro livro) {
 		this.livro = livro;
+	}/*
+	public int getQuantidade() {
+		return quantidade;
 	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}*/
 	
 }

@@ -10,8 +10,10 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Membro;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Pedido;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.MembroRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.PedidoRepository;
 
 @ManagedBean
 public class MembroController extends Controller {
@@ -193,5 +195,15 @@ public class MembroController extends Controller {
 		membroRepository.ativar(membro);
 		
 		return "/client/organizacao/participantes.xhtml";
+	}
+	
+	public String novoPedido(Pedido pedido) throws NoSuchAlgorithmException{
+		
+		FacesContext fc = FacesContext.getCurrentInstance();
+		EntityManager manager = getEntityManager();
+		PedidoRepository pedidoRepository = new PedidoRepository(manager);		
+		pedidoRepository.inserir(pedido);
+		
+		return "/client/membro/home_membro.xhtml";
 	}
 }

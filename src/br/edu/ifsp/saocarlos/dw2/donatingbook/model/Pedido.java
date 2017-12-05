@@ -12,10 +12,16 @@ public class Pedido {
 	@Id
 	@GeneratedValue
 	private int id;
+	private String titulo;
+	private String urlImagem;
+	private int quantidade;
 	private String descricao;
 	@ManyToOne
 	@JoinColumn(name="ongId")
 	private Organizacao organizacao;
+	@ManyToOne
+	@JoinColumn(name="membroId")
+	private Membro membro;
 	
 	public int getId() {
 		return id;
@@ -34,6 +40,30 @@ public class Pedido {
 	}
 	public void setOrganizacao(Organizacao organizacao) {
 		this.organizacao = organizacao;
+	}
+	public String getTitulo() {
+		return titulo;
+	}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	public String getUrlImagem() {
+		return urlImagem;
+	}
+	public void setUrlImagem(String urlImagem) {
+		this.urlImagem = urlImagem;
+	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+	public Membro getMembro() {
+		return membro;
+	}
+	public void setMembro(Membro membro) {
+		this.membro = membro;
 	}
 		
 }

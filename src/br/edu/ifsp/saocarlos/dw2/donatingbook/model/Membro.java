@@ -1,6 +1,9 @@
 package br.edu.ifsp.saocarlos.dw2.donatingbook.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -20,6 +23,8 @@ public class Membro extends Usuario{
 	private String cidade;
 	private int ongId;
 	private int status;
+	@OneToMany(mappedBy="membro", targetEntity=Pedido.class)
+	private List<Pedido> pedidos;
 	
 	public String getNome() {
 		return nome;
@@ -86,5 +91,11 @@ public class Membro extends Usuario{
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 }
