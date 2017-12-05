@@ -1,5 +1,7 @@
 package br.edu.ifsp.saocarlos.dw2.donatingbook.controller;
 
+import java.util.ArrayList;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
@@ -17,6 +19,7 @@ public class PedidoController extends Controller{
 	private String titulo;
 	private int quantidade;
 	private String descricao;
+	private ArrayList<Pedido> pedidos;
 	
 	public String getTitulo() {
 		return titulo;
@@ -35,8 +38,13 @@ public class PedidoController extends Controller{
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}	
+	public ArrayList<Pedido> getPedidos() {
+		return pedidos;
 	}
-	
+	public void setPedidos(ArrayList<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 	public String cadastrarPedido(){
 		HttpSession httpSession = getSession();
 		EntityManager manager = getEntityManager();
@@ -62,6 +70,18 @@ public class PedidoController extends Controller{
 		pedidoRepository.inserir(pedido);
 		
 		return "/client/membro/home_membro.xhtml";
+	}
+	
+	public ArrayList<Pedido> getPedidosMembro(){
+		HttpSession httpSession = getSession();
+		EntityManager manager = getEntityManager();
+		
+		int id = (Integer) httpSession.getAttribute("id");
+		
+		PedidoRepository pedidoRepository = new PedidoRepository(manager);
+		pedidos = pedidoRepository.getPedidosByMembroId(id);
+		
+		return pedidos;
 	}
 	
 }

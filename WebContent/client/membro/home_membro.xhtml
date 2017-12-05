@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	
@@ -16,6 +17,7 @@
 	<title>Menu Membro da ONG</title>
 </h:head>
 <h:body>
+<h:form>
 	<nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -64,46 +66,27 @@
             <h1>Meus Pedidos</h1>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+        <ui:repeat var="p" value="#{pedidoController.pedidosMembro}">
+        		<div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                    <img src="/donating-book/client/img/livro.png" alt="..."></img>
+                    <img src="/donating-book/client/img/livro.png" alt="..."/>
                     <div class="caption">
-                        <h3>Livro XYZ</h3>
-                        <p>Lorem ipsum...</p>
+                        <h3>#{p.titulo}</h3>
+                        <p>#{p.descricao}</p>
                         <p>
-                            <a href="/donating-book/client/membro/editar_pedido.xhtml" class="btn btn-primary" role="button">Editar</a>
-                            <a href="#" class="btn btn-danger" role="button">Desabilitar</a>
-                        </p>
+                    		<h:commandLink>
+                    			<button class="btn btn-primary">Editar</button>
+                    		</h:commandLink>
+                    		<h:commandLink >
+                    			<button class="btn btn-danger">Excluir</button>
+                    		</h:commandLink>
+	                    </p>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="/donating-book/client/img/livro.png" alt="..."></img>
-                    <div class="caption">
-                        <h3>Livro XYZ</h3>
-                        <p>Lorem ipsum...</p>
-                        <p>
-                            <a href="/donating-book/client/membro/editar_pedido.xhtml" class="btn btn-primary" role="button">Editar</a>
-                            <a href="#" class="btn btn-danger" role="button">Desabilitar</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="/donating-book/client/img/livro.png" alt="..."></img>
-                    <div class="caption">
-                        <h3>Livro XYZ</h3>
-                        <p>Lorem ipsum...</p>
-                        <p>
-                            <a href="/donating-book/client/membro/editar_pedido.xhtml" class="btn btn-primary" role="button">Editar</a>
-                            <a href="#" class="btn btn-danger" role="button">Desabilitar</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+        	</ui:repeat>
         </div>
     </div>
+    </h:form>
 </h:body>
 </html>

@@ -35,7 +35,7 @@ public class PedidoRepository {
 	
 	public ArrayList<Pedido> getPedidosByMembroId(int membroId){
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-		Query query = manager.createQuery("SELECT p FROM pedido p WHERE membroid = ?0");
+		Query query = manager.createQuery("SELECT p FROM Pedido p WHERE membroid = ?0");
 		query.setParameter(0, membroId);
 		try {
 			pedidos = (ArrayList<Pedido>) query.getResultList();
