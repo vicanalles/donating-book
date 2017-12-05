@@ -195,7 +195,7 @@ public class OrganizacaoController extends Controller {
 		return anuncios;
 	}
 
-	/*public ArrayList<Organizacao> getOrganizacoesRelatorio() throws NoSuchAlgorithmException{
+	public ArrayList<Organizacao> getOrganizacoes() throws NoSuchAlgorithmException{
 		
 		EntityManager manager = getEntityManager();
 		
@@ -203,5 +203,5 @@ public class OrganizacaoController extends Controller {
 		organizacoes = organizacaoRepository.getOrganizacoesRelatorio();
 		
 		return organizacoes;
-	}*/
+	}
 }

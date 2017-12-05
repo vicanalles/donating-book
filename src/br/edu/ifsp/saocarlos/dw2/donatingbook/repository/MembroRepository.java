@@ -83,4 +83,17 @@ public class MembroRepository {
 			return membro;
 		}
 	}
+	
+	public int getOngIdByMembroId(int membroId){
+		Membro membro = new Membro();
+		Query query = manager.createQuery("SELECT m FROM Membro m WHERE id = ?0");
+		query.setParameter(0, membroId);
+		try {
+			membro = (Membro) query.getSingleResult();
+			return membro.getOngId();
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return membro.getOngId();
+		}
+	}
 }

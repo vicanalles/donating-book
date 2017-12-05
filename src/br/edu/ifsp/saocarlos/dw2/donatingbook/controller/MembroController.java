@@ -9,8 +9,10 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Anuncio;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Membro;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Pedido;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.MembroRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.PedidoRepository;
@@ -205,5 +207,16 @@ public class MembroController extends Controller {
 		pedidoRepository.inserir(pedido);
 		
 		return "/client/membro/home_membro.xhtml";
+	}
+	
+	public ArrayList<Anuncio> getAnuncios(){
+		
+		HttpSession session = getSession();
+		EntityManager manager = getEntityManager();
+		MembroRepository membroRepository = new MembroRepository(manager);
+		int ongId = membroRepository.getOngIdByMembroId((Integer) session.getAttribute("id"));
+		
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
+		return anuncioRepository.getAnunciosByIdProp(ongId);
 	}
 }

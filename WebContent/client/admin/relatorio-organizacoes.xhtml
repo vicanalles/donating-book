@@ -84,7 +84,7 @@
  	</nav>
  	<div class="container">
  		<div class="page-header">
-             <h1>ONG's aguardando aprovação</h1>
+             <h1>Relatório de Organizações</h1>
          </div>
          <table class="table table-hover">
              <thead>
@@ -94,12 +94,12 @@
                  <th>Número de Anúncios</th>
              </thead>
              <tbody>
-             	<ui:repeat>
+             	<ui:repeat var="o" value="#{organizacaoController.organizacoes}">
 	           		<tr>
-                    	<td></td>
-                    	<td></td>
-                    	<td></td>
-                    	<td></td>
+                    	<td>#{o.nome}</td>
+                    	<td>#{o.email}</td>
+                    	<td>#{o.telefone}</td>
+                    	<td>5</td>
 	                </tr>
                 </ui:repeat>
              </tbody>

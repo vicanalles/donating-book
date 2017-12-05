@@ -141,7 +141,7 @@ public class OrganizacaoRepository {
 		}
 	}
 	
-	/*public ArrayList<Organizacao> getOrganizacoesRelatorio(){
+	public ArrayList<Organizacao> getOrganizacoesRelatorio(){
 		ArrayList<Organizacao> organizacoes = null;
 		Query query = manager.createQuery("SELECT o FROM Organizacao o");
 		try {
@@ -151,5 +151,5 @@ public class OrganizacaoRepository {
 			e.printStackTrace();
 			return organizacoes;
 		}
-	}*/
+	}
 }
