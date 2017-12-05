@@ -131,7 +131,7 @@ public class OrganizacaoController extends Controller {
 			organizacao.setCidade(cidade);
 			organizacao.setTipo("Organizacao");
 			organizacao.setStatus(0);
-			organizacao.setCodigo("minhaorganizacao");
+			organizacao.setCodigo(nome.replace(" ", "").toLowerCase() + estado.toLowerCase());
 			organizacaoRepository.inserir(organizacao);
 		
 			return "/index.xhtml";
@@ -195,5 +195,13 @@ public class OrganizacaoController extends Controller {
 		return anuncios;
 	}
 
-	
+	/*public ArrayList<Organizacao> getOrganizacoesRelatorio() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		organizacoes = organizacaoRepository.getOrganizacoesRelatorio();
+		
+		return organizacoes;
+	}*/
 }

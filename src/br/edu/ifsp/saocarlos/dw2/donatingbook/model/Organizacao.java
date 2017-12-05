@@ -28,7 +28,9 @@ public class Organizacao extends Usuario{
 		return codigo;
 	}
 	public void setCodigo(String codigo) {
+		System.out.println("Parametro: " + codigo);
 		this.codigo = codigo;
+		System.out.println("Parametro 2: " + this.codigo);
 	}
 	public int getStatus() {
 		return status;
