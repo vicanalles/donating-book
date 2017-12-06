@@ -10,9 +10,11 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Anuncio;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Doacao;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Membro;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Pedido;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.DoacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.MembroRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.PedidoRepository;
@@ -218,5 +220,17 @@ public class MembroController extends Controller {
 		
 		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
 		return anuncioRepository.getAnunciosByIdProp(ongId);
+	}
+	
+	public String demonstrarInteresse(Anuncio anuncio){
+		HttpSession session = getSession();
+		EntityManager manager = getEntityManager();
+		DoacaoRepository doacaoRepository = new DoacaoRepository(manager);
+		Doacao doacao = doacaoRepository.getDoacao(anuncio.getId());
+		
+		int idMembro = (Integer) session.getAttribute("id");
+		doacao.setIdReceptor(idMembro);
+		doacaoRepository.atualizar(doacao);
+		return "/client/membro/anuncios_organizacao.xhtml";
 	}
 }

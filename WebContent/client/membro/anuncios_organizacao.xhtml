@@ -77,7 +77,7 @@
                 		<td>#{a.titulo}</td>
                 		<td>#{a.descricao}</td>
                     	<td class="action-item action-icon">
-                    		<h:commandLink>
+                    		<h:commandLink action="#{membroController.demonstrarInteresse(a)}">
                     			<button class="btn btn-danger">Demonstrar Interesse</button>
                     		</h:commandLink>
                     	</td>

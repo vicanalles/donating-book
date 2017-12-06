@@ -31,5 +31,21 @@ private EntityManager manager;
 			return 0;
 		}
 	}
-	
+
+	public Doacao getDoacao(int id) {
+		Doacao doacao = null;
+		Query query = manager.createQuery("SELECT d FROM Doacao d WHERE d.id = ?0");
+		query.setParameter(0, id);
+		try{
+			doacao = (Doacao) query.getSingleResult();
+			return doacao;
+		}catch(NoResultException e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void atualizar(Doacao doacao) {
+		manager.merge(doacao);
+	}
 }
