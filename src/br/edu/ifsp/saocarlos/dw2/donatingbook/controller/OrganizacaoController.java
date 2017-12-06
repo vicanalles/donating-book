@@ -7,12 +7,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Anuncio;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Usuario;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.UsuarioRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.VoluntarioRepository;
 
 @ManagedBean
 public class OrganizacaoController extends Controller {
@@ -211,5 +216,78 @@ public class OrganizacaoController extends Controller {
 		
 		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
 		return anuncioRepository.getNumeroAnuncios(ongId);
+	}
+	
+public String editarOrganizacao() throws NoSuchAlgorithmException {
+		
+		EntityManager manager = getEntityManager();
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.TRUE);
+		String email = (String) session.getAttribute("usuario");
+		
+		UsuarioRepository usuarioRepo = new UsuarioRepository(manager);
+		int userId = usuarioRepo.getUserIdByEmail(email);
+		
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		Organizacao organizacao = organizacaoRepository.getOngById(userId);
+		
+		this.email = organizacao.getEmail();
+		this.nome = organizacao.getNome();
+		this.cpf = organizacao.getCpf();
+		this.telefone = organizacao.getTelefone();
+		this.rua = organizacao.getRua();
+		this.numero = organizacao.getNumero();
+		this.complemento = organizacao.getComplemento();
+		this.bairro = organizacao.getBairro();
+		this.estado = organizacao.getEstado();
+		this.cidade = organizacao.getCidade();
+		
+		return "/client/organizacao/editar_perfil_organizacao.xhtml";
+	}
+	
+	public String atualizarOrganizacao() throws NoSuchAlgorithmException{
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.TRUE);
+		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+		
+		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
+		OrganizacaoRepository organizacaoRepository = new OrganizacaoRepository(manager);
+		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
+		String emailUser = (String) session.getAttribute("usuario");
+		String senhaAtual = (String) session.getAttribute("senhaAtual");
+		int idUser = organizacaoRepository.getOngByEmail(emailUser);
+		
+		Usuario usuario = usuarioRepository.getUserById(idUser);
+		Organizacao organizacao= organizacaoRepository.getOngById(idUser);
+		
+		if(senha.equals("") && senha2.equals("")) {
+			usuario.setSenha(senhaAtual);
+		}
+		else if(senha.equals(senha2)) {
+			usuario.setSenha(senha);
+			session.setAttribute("senhaAtual", senha);
+		}
+		else {
+			return "";
+		}
+		
+		usuario.setEmail(email);
+		organizacao.setNome(nome);
+		organizacao.setCpf(cpf);
+		organizacao.setTelefone(telefone);
+		organizacao.setRua(rua);
+		organizacao.setNumero(numero);
+		organizacao.setComplemento(complemento);
+		organizacao.setBairro(bairro);
+		organizacao.setEstado(estado);
+		organizacao.setCidade(cidade);
+		
+		usuarioRepository.atualizar(usuario);
+		organizacaoRepository.atualizar(organizacao);
+		
+		return "/client/organizacao/home_ong.xhtml";
 	}
 }
