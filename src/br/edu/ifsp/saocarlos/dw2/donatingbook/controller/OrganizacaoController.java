@@ -11,8 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Anuncio;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Pedido;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.DoacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.PedidoRepository;
 
 @ManagedBean
 public class OrganizacaoController extends Controller {
@@ -32,6 +36,7 @@ public class OrganizacaoController extends Controller {
 	private String cidade;
 	private ArrayList<Organizacao> organizacoes;
 	private ArrayList<Anuncio> anuncios;
+	private ArrayList<Pedido> pedidos;
 	
 	public int getId() {
 		return id;
@@ -211,5 +216,34 @@ public class OrganizacaoController extends Controller {
 		
 		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
 		return anuncioRepository.getNumeroAnuncios(ongId);
+	}
+	
+	public ArrayList<Pedido> getPedidos() throws NoSuchAlgorithmException{
+		HttpSession session = getSession();
+		EntityManager manager = getEntityManager();
+		
+		int id = (Integer) session.getAttribute("id");
+		
+		PedidoRepository pedidoRepository = new PedidoRepository(manager);
+		pedidos = pedidoRepository.getPedidos(id);
+		
+		return pedidos;
+	}
+	
+	public ArrayList<Voluntario> getVoluntariosDoadores(){
+		HttpSession session = getSession();
+		EntityManager manager = getEntityManager();
+		
+		int id = (Integer) session.getAttribute("id");
+		
+		DoacaoRepository doacaoRepository = new DoacaoRepository(manager);
+		return doacaoRepository.getVoluntariosDoadores(id);
+	}
+	
+	public String nomeAnuncio(int id) {
+		EntityManager manager = getEntityManager();
+		
+		DoacaoRepository doacaoRepository = new DoacaoRepository(manager);
+		return doacaoRepository.nomeAnuncio(id);
 	}
 }

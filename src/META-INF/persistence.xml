@@ -11,6 +11,7 @@
 		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Doacao</class>
 		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Livro</class>
 		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Pedido</class>
+		<class>br.edu.ifsp.saocarlos.dw2.donatingbook.model.Interesse</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>

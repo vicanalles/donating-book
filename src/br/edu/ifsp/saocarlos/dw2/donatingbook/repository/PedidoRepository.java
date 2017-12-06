@@ -22,7 +22,7 @@ public class PedidoRepository {
 	
 	public ArrayList<Pedido> getPedidos(int ongId){
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
-		Query query = manager.createQuery("SELECT p FROM pedido p WHERE ongid = ?0");
+		Query query = manager.createQuery("SELECT p FROM Pedido p WHERE ongid = ?0");
 		query.setParameter(0, ongId);
 		try {
 			pedidos = (ArrayList<Pedido>) query.getResultList();

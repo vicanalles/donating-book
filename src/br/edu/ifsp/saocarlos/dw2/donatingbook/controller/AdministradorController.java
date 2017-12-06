@@ -13,6 +13,8 @@ import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Administrador;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AdministradorRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.DoacaoRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.InteresseRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.VoluntarioRepository;
 
@@ -171,5 +173,23 @@ public class AdministradorController extends Controller{
 		
 		voluntarios = voluntarioRepository.getVoluntariosDesativados();
 		return voluntarios;
+	}
+	
+	public long getNumeroDoacoesRecebidas() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		DoacaoRepository doacaoRepository = new DoacaoRepository(manager);
+		
+		return doacaoRepository.getNumeroDoacoesRecebidas();
+	}
+	
+	public long getNumeroDoacoesRepassadas() {
+		
+		EntityManager manager = getEntityManager();
+		
+		InteresseRepository interesseRepository = new InteresseRepository(manager);
+		
+		return interesseRepository.getNumeroDoacoesRepassadas();
 	}
 }

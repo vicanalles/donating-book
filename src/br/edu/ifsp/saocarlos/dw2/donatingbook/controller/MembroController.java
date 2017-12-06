@@ -7,14 +7,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Anuncio;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Doacao;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Interesse;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Membro;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Pedido;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.DoacaoRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.InteresseRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.MembroRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.PedidoRepository;
@@ -223,14 +226,22 @@ public class MembroController extends Controller {
 	}
 	
 	public String demonstrarInteresse(Anuncio anuncio){
-		HttpSession session = getSession();
-		EntityManager manager = getEntityManager();
-		DoacaoRepository doacaoRepository = new DoacaoRepository(manager);
-		Doacao doacao = doacaoRepository.getDoacao(anuncio.getId());
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		
+		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
+		
+		HttpSession session = getSession();
 		int idMembro = (Integer) session.getAttribute("id");
-		doacao.setIdReceptor(idMembro);
-		doacaoRepository.atualizar(doacao);
+		InteresseRepository interesseRepository = new InteresseRepository(manager);
+		Interesse interesse = new Interesse();
+		
+		interesse.setIdAnuncio(anuncio.getId());
+		interesse.setIdMembro(idMembro);
+		
+		interesseRepository.inserir(interesse);
+		
 		return "/client/membro/anuncios_organizacao.xhtml";
 	}
 }

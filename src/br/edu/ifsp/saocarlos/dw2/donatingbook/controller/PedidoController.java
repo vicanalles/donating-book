@@ -83,5 +83,4 @@ public class PedidoController extends Controller{
 		
 		return pedidos;
 	}
-	
 }

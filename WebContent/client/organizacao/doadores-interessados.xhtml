@@ -14,7 +14,7 @@
 	<script src="/donating-book/client/lib/jquery-3.2.1.min.js"/>
 	<script src="/donating-book/client/lib/bootstrap/js/bootstrap.min.js"/>
 	
-	<title>Meus Anúncios</title>
+	<title>Doadores Interessados</title>
 </h:head>
 <h:body>
 	<nav class="navbar navbar-default">
@@ -34,13 +34,13 @@
                     <li>
                         <a href="/donating-book/client/organizacao/home_ong.xhtml">Home</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="/donating-book/client/organizacao/meus_anuncios.xhtml">Meus anúncios</a>
                     </li>
                     <li>
                         <a href="/donating-book/client/organizacao/participantes.xhtml">Participantes</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="/donating-book/client/organizacao/doadores-interessados.xhtml">Voluntários Doadores</a>
                     </li>
                 </ul>
@@ -65,31 +65,24 @@
     </nav>
     <div class="container">
         <div class="page-header">
-            <h1>Meus anúncios <small><a href="novo_anuncio.xhtml" class="btn btn-primary">Novo anúncio</a></small></h1>
+            <h1>Doadores Interessados</h1>
         </div>
         <table class="table table-hover">
             <thead>
-                <th>Livro</th>
-                <th>Descrição</th>
-                <th></th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Anúncio</th>
                 <th></th>
             </thead>
             <tbody>
             	<h:form>
-            		<ui:repeat var="a" value="#{anuncioController.meusAnunciosByIdProp}">
+            		<ui:repeat var="v" value="#{organizacaoController.voluntariosDoadores}">
 	                	<tr>
-	                		<td>#{a.titulo}</td>
-	                		<td>#{a.descricao}</td>
-	                		<td class="action-item action-icon">
-	                    		<h:commandLink action="#{anuncioController.editarAnuncio(a)}">
-	                    			<button class="btn btn-primary btn-block">Editar</button>
-	                    		</h:commandLink>
-	                    	</td>
-	                    	<td class="action-item action-icon">
-	                    		<h:commandLink action="#{anuncioController.removerAnuncio(a)}">
-	                    			<button class="btn btn-danger btn-block">Excluir</button>
-	                    		</h:commandLink>
-	                    	</td>
+	                		<td>#{v.nome}</td>
+	                		<td>#{v.email}</td>
+	                		<td>#{v.telefone}</td>
+	                		<td>#{organizacaoController.nomeAnuncio(v.id)}</td>
 	                	</tr>
                		 </ui:repeat>
             	</h:form>

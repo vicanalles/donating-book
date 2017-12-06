@@ -177,22 +177,24 @@ public class AnuncioController extends Controller{
 		return anuncios;
 	}
 	
-	public String doar(Anuncio anuncio) {
-		Doacao doacao = new Doacao();
-		doacao.setIdAnuncio(anuncio.getId());
-		
-		EntityManager manager = getEntityManager();
+	public String doar(Anuncio anuncio) {		
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
-		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
-		String emailUser = (String) session.getAttribute("usuario");
-		int idProp = voluntarioRepository.getVoluntarioByEmail(emailUser);
 		
-		doacao.setIdUsuario(idProp);
+		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
+		
+		int idUsuario = (Integer) session.getAttribute("id");
 		
 		DoacaoRepository doacaoRepository = new DoacaoRepository(manager);
+		Doacao doacao = new Doacao();
+		
+		doacao.setIdAnuncio(anuncio.getId());
+		doacao.setIdUsuario(idUsuario);
+		doacao.setIdReceptor(anuncio.getIdProp());
+		
 		doacaoRepository.inserir(doacao);
 		
 		return "/donating-book/client/doador/home_doador.xhtml";
