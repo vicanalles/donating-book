@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	
@@ -50,7 +51,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="/donating-book/client/organizacao/editar_perfil_organizacao.xhtml">Editar Perfil</a>
+                                <h:commandLink action="#{organizacaoController.editarOrganizacao}" value="Editar Perfil"/>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li>
@@ -76,87 +77,111 @@
 							<p class="text-center"><b>Dados para acesso</b></p>
 							<div class="col-xs-4">
                                 <div class="form-group">
-                                    <label for=""><b>E-mail</b></label>
-                                    <h:inputText type="email" class="form-control" id="email" ></h:inputText>
-                                </div>
-                            </div>
-							<div class="col-xs-4">
-                                <div class="form-group">
-                                    <label for=""><b>Senha</b></label>
-                                    <h:inputText type="password" class="form-control" placeholder="Senha"/>
+                                    <h:outputLabel>E-mail</h:outputLabel>
+                                    <h:inputText value="#{organizacaoController.email}" type="email" class="form-control" id="email" ></h:inputText>
                                 </div>
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
-                                    <label for=""><b>Confirme a senha</b></label>
-                                    <h:inputText type="password" class="form-control" placeholder="Senha"/>
+                                    <h:outputLabel>Senha</h:outputLabel>
+                                    <h:inputSecret value="#{organizacaoController.senha}" type="password" class="form-control" placeholder="Senha"></h:inputSecret>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <h:outputLabel>Confirmar a Senha</h:outputLabel>
+                                    <h:inputSecret value="#{organizacaoController.senha2}" type="password" class="form-control" placeholder="Senha"></h:inputSecret>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <hr/>
                             </div>
-                            <p class="text-center"><b>Dados da ONG</b></p>
+                            <p class="text-center"><b>Dados pessoais</b></p>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    <label for=""><b>Nome</b></label>
-                                    <h:inputText type="text" class="form-control" placeholder="Nome"/>
+                                    <h:outputLabel>Nome</h:outputLabel>
+                                    <h:inputText value="#{organizacaoController.nome}" type="text" class="form-control" placeholder="Nome"/>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for=""><b>CPF</b></label>
-                                    <h:inputText type="text" class="form-control" placeholder="CPF"/>
+                                    <h:outputLabel>CNPJ</h:outputLabel>
+                                    <h:inputText value="#{organizacaoController.cpf}" type="text" class="form-control" placeholder="CPF"/>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for=""><b>Telefone</b></label>
-                                    <h:inputText type="text" class="form-control" placeholder="Telefone"/>
+                                    <h:outputLabel>Telefone</h:outputLabel>
+                                    <h:inputText value="#{organizacaoController.telefone}" type="text" class="form-control" placeholder="Telefone"/>
                                 </div>
                             </div>
                             <div class="col-xs-10">
                                 <div class="form-group">
-                                    <label for=""><b>Endereço</b></label>
-                                    <h:inputText type="text" class="form-control" placeholder="Endereço"/>
+                                    <h:outputLabel>Endereço</h:outputLabel>
+                                    <h:inputText value="#{organizacaoController.rua}" type="text" class="form-control" placeholder="Endereço"/>
                                 </div>
                             </div>
                             <div class="col-xs-2">
                                 <div class="form-group">
-                                    <label for=""><b>Número</b></label>
-                                    <h:inputText type="number" class="form-control" placeholder="Nº"/>
+                                    <h:outputLabel>Número</h:outputLabel>
+                                    <h:inputText value="#{organizacaoController.numero}" type="number" class="form-control" placeholder="Nº"/>
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
-                                    <label for=""><b>Complemento</b></label>
-                                    <h:inputText type="text" class="form-control" placeholder="Complemento"/>
+                                    <h:outputLabel>Complemento</h:outputLabel>
+                                    <h:inputText value="#{organizacaoController.complemento}" type="text" class="form-control" placeholder="Complemento"/>
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
-                                    <label for=""><b>Bairro</b></label>
-                                    <h:inputText type="text" class="form-control" placeholder="Bairro"/>
+                                    <h:outputLabel>Bairro</h:outputLabel>
+                                    <h:inputText value="#{organizacaoController.bairro}" type="text" class="form-control" placeholder="Bairro"/>
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
-                                    <label for=""><b>Estado</b></label>
-                                    <select class="form-control">
-                                        <option>PR</option>
-                                        <option>SP</option>
-                                        <option>RJ</option>
-                                    </select>
+                                    <h:outputLabel for="">Estado</h:outputLabel>
+                                    <h:selectOneMenu value="#{organizacaoController.estado}" class="form-control">
+                                        <f:selectItem itemValue="AC" itemLabel="AC"></f:selectItem>
+                                        <f:selectItem itemValue="AL" itemLabel="AL"></f:selectItem>
+                                        <f:selectItem itemValue="AP" itemLabel="AP"></f:selectItem>
+                                        <f:selectItem itemValue="AM" itemLabel="AM"></f:selectItem>
+                                        <f:selectItem itemValue="BA" itemLabel="BA"></f:selectItem>
+                                        <f:selectItem itemValue="CE" itemLabel="CE"></f:selectItem>
+                                        <f:selectItem itemValue="DF" itemLabel="DF"></f:selectItem>
+                                        <f:selectItem itemValue="ES" itemLabel="ES"></f:selectItem>
+                                        <f:selectItem itemValue="GO" itemLabel="GO"></f:selectItem>
+                                        <f:selectItem itemValue="MA" itemLabel="MA"></f:selectItem>
+                                        <f:selectItem itemValue="MT" itemLabel="MT"></f:selectItem>
+                                        <f:selectItem itemValue="MS" itemLabel="MS"></f:selectItem>
+                                        <f:selectItem itemValue="MG" itemLabel="MG"></f:selectItem>
+                                        <f:selectItem itemValue="PA" itemLabel="PA"></f:selectItem>
+                                        <f:selectItem itemValue="PB" itemLabel="PB"></f:selectItem>
+                                        <f:selectItem itemValue="PR" itemLabel="PR"></f:selectItem>
+                                        <f:selectItem itemValue="PE" itemLabel="PE"></f:selectItem>
+                                        <f:selectItem itemValue="PI" itemLabel="PI"></f:selectItem>
+                                        <f:selectItem itemValue="RJ" itemLabel="RJ"></f:selectItem>
+                                        <f:selectItem itemValue="RN" itemLabel="RN"></f:selectItem>
+                                        <f:selectItem itemValue="RS" itemLabel="RS"></f:selectItem>
+                                        <f:selectItem itemValue="RO" itemLabel="RO"></f:selectItem>
+                                        <f:selectItem itemValue="RR" itemLabel="RR"></f:selectItem>
+                                        <f:selectItem itemValue="SC" itemLabel="SC"></f:selectItem>
+                                        <f:selectItem itemValue="SP" itemLabel="SP"></f:selectItem>
+                                        <f:selectItem itemValue="SE" itemLabel="SE"></f:selectItem>
+                                        <f:selectItem itemValue="TO" itemLabel="TO"></f:selectItem>
+                                    </h:selectOneMenu>
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
-                                    <label for=""><b>Cidade</b></label>
-                                    <h:inputText type="text" class="form-control" placeholder="Cidade"/>
+                                    <h:outputLabel>Cidade</h:outputLabel>
+                                    <h:inputText value="#{organizacaoController.cidade}" type="text" class="form-control" placeholder="Cidade"/>
                                 </div>
                             </div>
-                            <div class="col-xs-12">
-                                <h:commandLink class="btn btn-primary btn-block">Atualizar dados da Organização</h:commandLink>
-                            </div>
+                            <div class="col-xs-6">
+               					<h:commandButton action="#{organizacaoController.atualizarOrganizacao}" value="Salvar" class="btn btn-primary" />
+        					</div>
 						</h:form>
 					</div>
 				</div>

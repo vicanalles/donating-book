@@ -192,15 +192,23 @@ public class VoluntarioController extends Controller {
 		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
 		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
 		String emailUser = (String) session.getAttribute("usuario");
+		String senhaAtual = (String) session.getAttribute("senhaAtual");
 		int idUser = voluntarioRepository.getVoluntarioByEmail(emailUser);
 		
 		Usuario usuario = usuarioRepository.getUserById(idUser);
 		Voluntario voluntario = voluntarioRepository.getVoluntarioById(idUser);
-		if(senha != null && senha2 != null) {
-			if(senha.equals(senha2)) {
-				usuario.setSenha(senha);
-			}
+		
+		if(senha.equals("") && senha2.equals("")) {
+			usuario.setSenha(senhaAtual);
 		}
+		else if(senha.equals(senha2)) {
+			usuario.setSenha(senha);
+			session.setAttribute("senhaAtual", senha);
+		}
+		else {
+			return "";
+		}
+		
 		usuario.setEmail(email);
 		voluntario.setNome(nome);
 		voluntario.setCpf(cpf);

@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario;
 
 public class OrganizacaoRepository {
 	
@@ -30,6 +31,10 @@ public class OrganizacaoRepository {
 	
 	public void ativar(Organizacao organizacao) {
 		manager.persist(organizacao);
+	}
+	
+	public void atualizar(Organizacao organizacao) {
+		manager.merge(organizacao);
 	}
 	
 	/*

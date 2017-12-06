@@ -54,6 +54,7 @@ public class LoginController extends Controller {
 				HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 				session.setAttribute("usuario", email);
 				session.setAttribute("id", loginIdResult);
+				session.setAttribute("senhaAtual", senha);
 				System.out.println("HOME DO VOLUNTARIO");
 				return "/client/doador/home_doador.xhtml";
 			}
@@ -71,6 +72,7 @@ public class LoginController extends Controller {
 				HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 				session.setAttribute("usuario", email);
 				session.setAttribute("id", loginIdResult);
+				session.setAttribute("senhaAtual", senha);
 				System.out.println("HOME DA ORGANIZACAO");
 				return "/client/organizacao/home_ong.xhtml";
 			}else if(ongStatus == 2) {
@@ -90,6 +92,7 @@ public class LoginController extends Controller {
 				HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 				session.setAttribute("usuario", email);
 				session.setAttribute("id", loginIdResult);
+				session.setAttribute("senhaAtual", senha);
 				System.out.println("HOME DO MEMBRO");
 				return "/client/membro/home_membro.xhtml";
 			}
@@ -100,6 +103,7 @@ public class LoginController extends Controller {
 			HttpSession session = (HttpSession) externalContext.getSession(Boolean.FALSE);
 			session.setAttribute("usuario", email);
 			session.setAttribute("id", loginIdResult);
+			session.setAttribute("senhaAtual", senha);
 			System.out.println("HOME DO ADMINISTRADOR");
 			return "/client/admin/home_admin";
 		} else {

@@ -28,7 +28,11 @@ public class MembroRepository {
 	public void ativar(Membro membro) {
 		manager.persist(membro);
 	}
-
+	
+	public void atualizar(Membro membro) {
+		manager.merge(membro);
+	}
+	
 	public ArrayList<Membro> getMembrosByOngId(int organizacaoId) {
 
 		ArrayList<Membro> membros = new ArrayList<Membro>();
@@ -94,6 +98,19 @@ public class MembroRepository {
 		}catch(NoResultException e) {
 			e.printStackTrace();
 			return membro.getOngId();
+		}
+	}
+	
+	public int getMembroByEmail(String emailUser) {
+		Membro membro = null;
+		Query query = manager.createQuery("SELECT m FROM Membro m WHERE m.email = ?1");
+		query.setParameter(1, emailUser);
+		try {
+			membro = (Membro) query.getSingleResult();
+			return membro.getId();
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return 0;
 		}
 	}
 }

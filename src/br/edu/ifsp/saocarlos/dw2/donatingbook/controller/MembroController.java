@@ -14,13 +14,16 @@ import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Anuncio;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Doacao;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Interesse;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Membro;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Pedido;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Usuario;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.DoacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.InteresseRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.MembroRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.PedidoRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.UsuarioRepository;
 
 @ManagedBean
 public class MembroController extends Controller {
@@ -243,5 +246,74 @@ public class MembroController extends Controller {
 		interesseRepository.inserir(interesse);
 		
 		return "/client/membro/anuncios_organizacao.xhtml";
+	}
+	
+	public String editarMembro() throws NoSuchAlgorithmException {
+		
+		EntityManager manager = getEntityManager();
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.TRUE);
+		MembroRepository membroRepository = new MembroRepository(manager);
+		int userId = (Integer) session.getAttribute("id");
+		System.out.println(session.getAttribute("id"));
+		Membro membro = membroRepository.getMembroById(userId);
+		this.email = membro.getEmail();
+		this.nome = membro.getNome();
+		this.cpf = membro.getCpf();
+		this.telefone = membro.getTelefone();
+		this.rua = membro.getRua();
+		this.numero = membro.getNumero();
+		this.complemento = membro.getComplemento();
+		this.bairro = membro.getBairro();
+		this.estado = membro.getEstado();
+		this.cidade = membro.getCidade();
+		
+		return "/client/membro/editar_dados_membro.xhtml";
+	}
+	
+	public String atualizarMembro() throws NoSuchAlgorithmException{
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = context.getExternalContext();
+		HttpSession session = (HttpSession) externalContext.getSession(Boolean.TRUE);
+		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+		
+		EntityManager manager = (EntityManager) request.getAttribute("EntityManager");
+		MembroRepository membroRepository = new MembroRepository(manager);
+		UsuarioRepository usuarioRepository = new UsuarioRepository(manager);
+		String emailUser = (String) session.getAttribute("usuario");
+		String senhaAtual = (String) session.getAttribute("senhaAtual");
+		int idUser = membroRepository.getMembroByEmail(emailUser);
+		
+		Usuario usuario = usuarioRepository.getUserById(idUser);
+		Membro membro = membroRepository.getMembroById(idUser);
+		
+		if(senha.equals("") && senha2.equals("")) {
+			usuario.setSenha(senhaAtual);
+		}
+		else if(senha.equals(senha2)) {
+			usuario.setSenha(senha);
+			session.setAttribute("senhaAtual", senha);
+		}
+		else {
+			return "";
+		}
+		
+		usuario.setEmail(email);
+		membro.setNome(nome);
+		membro.setCpf(cpf);
+		membro.setTelefone(telefone);
+		membro.setRua(rua);
+		membro.setNumero(numero);
+		membro.setComplemento(complemento);
+		membro.setBairro(bairro);
+		membro.setEstado(estado);
+		membro.setCidade(cidade);
+		
+		usuarioRepository.atualizar(usuario);
+		membroRepository.atualizar(membro);
+		
+		return "/client/membro/home_membro.xhtml";
 	}
 }
