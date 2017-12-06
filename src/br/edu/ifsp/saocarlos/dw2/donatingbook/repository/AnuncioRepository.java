@@ -67,4 +67,18 @@ public class AnuncioRepository {
 			return anuncios;
 		}
 	}
+
+	public long getNumeroAnuncios(int ongId) {
+		Query query = manager.createQuery("SELECT count(a.id) "
+				+ "FROM Anuncio a, Organizacao o where a.idProp = ?0");
+		query.setParameter(0, ongId);
+		long numeroAnuncios;
+		try{
+			numeroAnuncios = (Long) query.getSingleResult();
+			return numeroAnuncios;
+		}catch(NoResultException e){
+			e.printStackTrace();
+			return 0;
+		}
+	}
 }

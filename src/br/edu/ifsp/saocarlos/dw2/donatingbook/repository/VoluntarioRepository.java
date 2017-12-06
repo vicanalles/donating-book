@@ -34,9 +34,9 @@ public void atualizar(Voluntario voluntario) {
 	}
 	
 	/*
-	 * Códigos para verificação de status:
-	 * 0 - Voluntário desativado, não pode acessar o sistema
-	 * 1 - Voluntário ativado, acessa o sistema normalmente
+	 * Cï¿½digos para verificaï¿½ï¿½o de status:
+	 * 0 - Voluntï¿½rio desativado, nï¿½o pode acessar o sistema
+	 * 1 - Voluntï¿½rio ativado, acessa o sistema normalmente
 	 */
 
 	public ArrayList<Voluntario> getVoluntarios() {
@@ -108,6 +108,18 @@ public void atualizar(Voluntario voluntario) {
 		}catch(NoResultException e) {
 			e.printStackTrace();
 			return voluntario;
+		}
+	}
+	
+	public ArrayList<Voluntario> getVoluntariosRelatorio(){
+		ArrayList<Voluntario> voluntarios = null;
+		Query query = manager.createQuery("SELECT v FROM Voluntario v");
+		try {
+			voluntarios = (ArrayList<Voluntario>) query.getResultList();
+			return voluntarios;
+		}catch(NoResultException e) {
+			e.printStackTrace();
+			return voluntarios;
 		}
 	}
 }

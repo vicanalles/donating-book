@@ -11,7 +11,14 @@ public class Doacao {
 	private int id;
 	private int idAnuncio;
 	private int idUsuario;
+	private int idReceptor;
 	
+	public int getIdReceptor() {
+		return idReceptor;
+	}
+	public void setIdReceptor(int idReceptor) {
+		this.idReceptor = idReceptor;
+	}
 	public int getId() {
 		return id;
 	}

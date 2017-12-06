@@ -17,7 +17,8 @@
  	<title>Relatório Voluntários</title>
  </h:head>
  <h:body>
- 	<nav class="navbar navbar-default">
+ 	<h:form>
+ 		<nav class="navbar navbar-default">
  		<div class="container-fluid">
  			<div class="navbar-header">
  				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
@@ -87,15 +88,23 @@
          </div>
          <table class="table table-hover">
              <thead>
-                 <th>ONG</th>
+                 <th>Nome</th>
                  <th>E-mail</th>
                  <th>Telefone</th>
                  <th>Número de Doações</th>
              </thead>
              <tbody>
-             	<!-- ui:repeat -->
+             	<ui:repeat var="v" value="#{voluntarioController.voluntarios}">
+	           		<tr>
+                    	<td>#{v.nome}</td>
+                    	<td>#{v.email}</td>
+                    	<td>#{v.telefone}</td>
+                    	<td>#{voluntarioController.numeroDoacoes(v.id)}</td>
+	                </tr>
+                </ui:repeat>
              </tbody>
          </table>
  	</div>
+ 	</h:form>
  </h:body>
  </html> 

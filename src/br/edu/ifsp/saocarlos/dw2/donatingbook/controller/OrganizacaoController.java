@@ -204,4 +204,12 @@ public class OrganizacaoController extends Controller {
 		
 		return organizacoes;
 	}
+	
+	public long numeroAnuncios(int ongId){
+		
+		EntityManager manager = getEntityManager();
+		
+		AnuncioRepository anuncioRepository = new AnuncioRepository(manager);
+		return anuncioRepository.getNumeroAnuncios(ongId);
+	}
 }

@@ -1,6 +1,7 @@
 package br.edu.ifsp.saocarlos.dw2.donatingbook.controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -9,8 +10,11 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Organizacao;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Usuario;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.model.Voluntario;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.AnuncioRepository;
+import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.DoacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.OrganizacaoRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.UsuarioRepository;
 import br.edu.ifsp.saocarlos.dw2.donatingbook.repository.VoluntarioRepository;
@@ -30,6 +34,7 @@ public class VoluntarioController extends Controller {
 	private String bairro;
 	private String estado;
 	private String cidade;
+	private ArrayList<Voluntario> voluntarios;
 	
 	public String getComplemento() {
 		return complemento;
@@ -211,5 +216,23 @@ public class VoluntarioController extends Controller {
 		voluntarioRepository.atualizar(voluntario);
 		
 		return "/client/doador/home_doador.xhtml";
+	}
+	
+	public ArrayList<Voluntario> getVoluntarios() throws NoSuchAlgorithmException{
+		
+		EntityManager manager = getEntityManager();
+		
+		VoluntarioRepository voluntarioRepository = new VoluntarioRepository(manager);
+		voluntarios = voluntarioRepository.getVoluntariosRelatorio();
+		
+		return voluntarios;
+	}
+	
+	public long numeroDoacoes(int voluntarioId){
+		
+		EntityManager manager = getEntityManager();
+		
+		DoacaoRepository doacaoRepository = new DoacaoRepository(manager);
+		return doacaoRepository.getNumeroDoacoesVoluntario(voluntarioId);
 	}
 }
